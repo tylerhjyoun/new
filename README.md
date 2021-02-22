@@ -8,6 +8,7 @@ sudo npm install -g nodemon This lets us look into our server in real time, so t
 and
 
 npm install bootstrap
+npm install react-scripts --save
 
 make sure its v4.0+
 # To run the server
