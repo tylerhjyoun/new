@@ -7,15 +7,20 @@ const Group = props => (
         <td>{props.group.groupName}</td>
         <td>{props.group.groupMembers}</td>
         <td>{props.group.groupCount}</td>
+        <td>
+            <a href="#" onClick={() => { props.deleteGroup(props.group._id) }}>delete</a>
+        </td>
     </tr>
 );
 
 export default class ShowGroups extends Component {
     constructor(props) {
         super(props)
+        this.deleteGroup = this.deleteGroup.bind(this)
         this.state = {
             groups: []
         }  
+    
     }
    
     componentDidMount(){
@@ -29,15 +34,24 @@ export default class ShowGroups extends Component {
 
     }
 
+    deleteGroup(id){
+        axios.delete('http://localhost:5000/groups/'+id)
+            .then(response => { console.log(response.data)});
+  
+        this.setState({
+            groups: this.state.groups.filter(el => el._id !== id)
+      })    
+    }
+
     groupList(){
         return this.state.groups.map(currentgroup => {
-             return <Group group={currentgroup} key={currentgroup._id}/>})
+             return <Group group={currentgroup} deleteGroup={this.deleteGroup} key={currentgroup._id}/>})
     }
 
     render() {
         return (
             <div>
-                Logged Users
+               <h2> Logged Groups </h2>
  
             <table>
             <thead>
