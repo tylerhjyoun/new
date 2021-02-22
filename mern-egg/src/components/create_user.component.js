@@ -9,10 +9,12 @@ export default class ShowUsers extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangeTimer = this.onChangeTimer.bind(this);
 
         this.state = {
             name: '',
-            username: ''
+            username: '',
+            usertimer: 0
         }    
     }
    
@@ -26,13 +28,19 @@ export default class ShowUsers extends Component {
             name: e.target.value
         })
     }
+    onChangeTimer(e){
+        this.setState({
+            usertimer: e.target.value
+        })
+    }
     
     onSubmit(e) {
         e.preventDefault();
 
         const user = {
             name: this.state.name,
-            username: this.state.username
+            username: this.state.username,
+            usertimer: this.state.usertimer
         }
 
         console.log(user)
@@ -45,14 +53,10 @@ export default class ShowUsers extends Component {
         
         this.setState({
             name: '',
-            username: ''
+            username: '',
+            usertimer: 0
         })
     }
-
-
-
-     
-
     render(){
         return (
             <div>
@@ -69,6 +73,12 @@ export default class ShowUsers extends Component {
                     required
                     value={this.state.username}
                     onChange={this.onChangeUsername}
+                />
+                <label>Timer: </label>
+                <input type="number"
+                    required
+                    value={this.state.usertimer}
+                    onChange={this.onChangeTimer}
                 />
                 <input type="submit" value="Create User"/>
                 </form>
