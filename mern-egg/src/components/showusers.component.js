@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import Timer from './timer.component'
 
 const User = props => (
     <tr>
         <td>{props.user.name}</td>
         <td>{props.user.username}</td>
+        <td><Timer count={props.user.usertimer}/></td>
     </tr>
 );
 
@@ -43,6 +45,7 @@ export default class ShowUsers extends Component {
                 <tr>
                     <th>Name</th>
                     <th>Username</th>
+                    <th>Timer</th>
                 </tr>
             </thead>
                 <tbody>
