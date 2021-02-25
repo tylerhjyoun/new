@@ -5,7 +5,8 @@ import axios from 'axios'
 const Group = props => (
     <tr>
         <td>{props.group.groupName}</td>
-        <td>{props.group.groupMembers}</td>
+        {/* <td>{props.group.groupMembers}</td> */}
+        <td>...members...</td>
         <td>{props.group.groupCount}</td>
         <td>
             <a href="#" onClick={() => { props.deleteGroup(props.group._id) }}>delete</a>
@@ -26,7 +27,11 @@ export default class ShowGroups extends Component {
     componentDidMount(){
         axios.get(`http://localhost:5000/groups`)
             .then(res => {
-                this.setState({groups: res.data});
+                console.log(res.data)
+                this.setState({
+                    groups: res.data,
+                });
+                
             })
             .catch((error) => {
                 console.log(error);
