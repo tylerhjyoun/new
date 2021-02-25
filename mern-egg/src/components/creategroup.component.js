@@ -10,7 +10,6 @@ export default class CreateGroup extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeGroupname = this.onChangeGroupname.bind(this);
         this.onChangeUsers = this.onChangeUsers.bind(this);
-        this.onChangeCount = this.onChangeCount.bind(this);
 
         this.state = {
             groupName: '',
@@ -41,11 +40,7 @@ export default class CreateGroup extends Component {
         })
     }
 
-    onChangeCount(e){
-        this.setState({
-            groupCount: e.target.value
-        })
-    }  
+    
 
     onChangeUsers(e){
         this.setState({
@@ -62,7 +57,7 @@ export default class CreateGroup extends Component {
             groupMembers: this.state.groupMembers.map(function(item) {
                 return item['label']
             }),
-            groupCount: this.state.groupCount
+            groupCount: this.state.groupMembers.length
         }
         console.log(group)
 
@@ -77,11 +72,11 @@ export default class CreateGroup extends Component {
             groupMembers: [],
             groupCount: 0
         })
+        window.location = '/groups';
     }
 
    
     render(){
-        console.log(this.state.users);
         const userList = [];
         this.state.users.forEach(function(element) {
             userList.push({label: element, value: element})
@@ -95,28 +90,20 @@ export default class CreateGroup extends Component {
         return (
             <div>
                 
-                Add Group
-                <form onSubmit={this.onSubmit}>          
+               <h2>Add Group</h2>  
+                <form onSubmit={this.onSubmit}>     
+                     <div>
                     <label>Group name: </label>
+                    </div>
                     <input  type="text" required value={this.state.name} onChange={this.onChangeGroupname} />
+                    <div> 
+
                     <label>Members: </label>
-                    {/* <select multi ref="userInput" required value={this.state.group} onChange={this.onChangeUsers}>
-                        {
-                            this.state.users.map(function(user) {
-                                return <option key={user} value={user}>
-                                        {user}
-                                        </option>;
-                            })
-                        }
-                        </select> */}
-                        {users}
-                     <div> 
                                        <Select isMulti ref="userInput" setValue={this.state.group} options={userList} onChange={this.onChangeUsers}
                                         />
                   
                         </div>
-
-                    <input type="submit" value="Create Group"/>
+                    <input type="submit" value="Create Group" className="btn btn-primary"/>
                 </form>
             </div>    
         )
