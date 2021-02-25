@@ -10,6 +10,7 @@ and
 npm install bootstrap
 npm install react-scripts --save
 
+
 make sure its v4.0+
 # To run the server
 cd backend nodemon server
