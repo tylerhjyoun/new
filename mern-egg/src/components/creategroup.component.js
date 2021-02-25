@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import Select from 'react-select'
 
 export default class CreateGroup extends Component {
     constructor(props) {
@@ -22,8 +23,9 @@ export default class CreateGroup extends Component {
     componentDidMount(){
         axios.get(`http://localhost:5000/users`)
             .then(res => {
+
                 this.setState({
-                    users: res.data.map(user => user.username)
+                     users: res.data.map(user=>user.username)
                 })            
             })
             .catch((error) => {
@@ -33,6 +35,7 @@ export default class CreateGroup extends Component {
     } 
 
     onChangeGroupname(e){
+
         this.setState({
             groupName: e.target.value
         })
@@ -46,7 +49,7 @@ export default class CreateGroup extends Component {
 
     onChangeUsers(e){
         this.setState({
-            groupMembers: this.state.groupMembers.concat(e.target.value)
+            groupMembers: e
         }    
         )
     }
@@ -56,10 +59,11 @@ export default class CreateGroup extends Component {
 
         const group = {
             groupName: this.state.groupName,
-            groupMembers: this.state.groupMembers,
+            groupMembers: this.state.groupMembers.map(function(item) {
+                return item['label']
+            }),
             groupCount: this.state.groupCount
         }
-
         console.log(group)
 
         axios.post(`http://localhost:5000/groups/add`, group)
@@ -75,16 +79,28 @@ export default class CreateGroup extends Component {
         })
     }
 
+   
     render(){
+        console.log(this.state.users);
+        const userList = [];
+        this.state.users.forEach(function(element) {
+            userList.push({label: element, value: element})
+        })
+
+        const users = this.state.users.map(user=> {
+            console.log(user.username)
+            console.log(user.name)
+            return <li key={user.username}> {user.username} </li>
+         })
         return (
             <div>
+                
                 Add Group
                 <form onSubmit={this.onSubmit}>          
                     <label>Group name: </label>
                     <input  type="text" required value={this.state.name} onChange={this.onChangeGroupname} />
-
                     <label>Members: </label>
-                    <select multi ref="userInput" required value={this.state.group} onChange={this.onChangeUsers}>
+                    {/* <select multi ref="userInput" required value={this.state.group} onChange={this.onChangeUsers}>
                         {
                             this.state.users.map(function(user) {
                                 return <option key={user} value={user}>
@@ -92,7 +108,13 @@ export default class CreateGroup extends Component {
                                         </option>;
                             })
                         }
-                        </select>
+                        </select> */}
+                        {users}
+                     <div> 
+                                       <Select isMulti ref="userInput" setValue={this.state.group} options={userList} onChange={this.onChangeUsers}
+                                        />
+                  
+                        </div>
 
                     <input type="submit" value="Create Group"/>
                 </form>
