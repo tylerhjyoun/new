@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+
 require('dotenv').config();
 
 const app = express();
@@ -22,6 +23,9 @@ connection.once('open', () => {
 //// use the routers for user and groups
  const usersRouter = require('./routes/users');
  const groupsRouter = require('./routes/groups');
+ const eventsRouter = require('./routes/events');
+
+ app.use('/events', eventsRouter);
  app.use('/users', usersRouter);
  app.use('/groups', groupsRouter);
 

@@ -4,15 +4,21 @@ export default class Timer extends Component {
     constructor(props){
         super(props)
         this.state = {
-            count: this.props.count
+            endtime: this.props.endtime,
+            count: Math.floor((new Date(this.props.endtime).getTime() - new Date().getTime())/(1000))
         }
     }
 
  render()   {
-     const {count} = this.state
-     return (
+    const {count} = this.state
+    const hours = Math.floor(count / 3600)
+    const counttemp = count % 3600
+    const minutes = Math.floor(counttemp/60)
+    const seconds = Math.floor(counttemp % 60)
+
+    return (
          <div>
-            <h1> Test timer: {count} </h1>
+         {hours}:{minutes}:{seconds}
          </div>
      )
  }
