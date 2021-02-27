@@ -1,109 +1,89 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
-import Select from 'react-select'
- 
+import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker'
 
 export default class CreateEvent extends Component {
     constructor(props) {
         super(props)
 
         this.onSubmit = this.onSubmit.bind(this);
-        this.onChangeGroupname = this.onChangeGroupname.bind(this);
-        this.onChangeUsers = this.onChangeUsers.bind(this);
+        this.onChangeEventname = this.onChangeEventname.bind(this);
+        this.onChangeDescription = this.onChangeDescription.bind(this);
+        this.onChangeDate= this.onChangeDate.bind(this);
+ 
 
         this.state = {
-            groupName: '',
-            groupMembers: [],
-            groupCount: 0,
-            users: []
-        }    
+            eventName: '',
+            description: '',
+            date: '',
+         }    
     }
-   
-    componentDidMount(){
-        axios.get(`http://localhost:5000/users`)
-            .then(res => {
-
-                this.setState({
-                     users: res.data.map(user=>user.username)
-                })            
-            })
-            .catch((error) => {
-                console.log(error);
-              })
-
-    } 
-
-    onChangeGroupname(e){
-
+    onChangeEventname(e){
         this.setState({
-            groupName: e.target.value
+            eventName: e.target.value
         })
     }
 
     
 
-    onChangeUsers(e){
+    onChangeDescription(e){
         this.setState({
-            groupMembers: e
+            description: e.target.value
         }    
         )
     }
+    
+    onChangeDate(e){
+        this.setState({
+            date: e
+        })
+    } 
 
     onSubmit(e) {
         e.preventDefault();
 
-        const group = {
-            groupName: this.state.groupName,
-            groupMembers: this.state.groupMembers.map(function(item) {
-                return item['label']
-            }),
-            groupCount: this.state.groupMembers.length
-        }
-        console.log(group)
+        const event = {
+            eventname: this.state.eventName,
+            description: this.state.description,
+            starttime: this.state.date[0],
+            endtime: this.state.date[1],
+         }
 
-        axios.post(`http://localhost:5000/groups/add`, group)
+        axios.post(`http://localhost:5000/events/add`, event)
             .then(res => console.log(res.data))
             .catch((error) => {
                 console.log(error);
               })
         
         this.setState({
-            groupName: '',
-            groupMembers: [],
-            groupCount: 0
+            eventName: '',
+            description: [],
+            date: ''
         })
-        window.location = '/groups';
+        window.location = '/events';
     }
 
-   
-    render(){
-        const userList = [];
-        this.state.users.forEach(function(element) {
-            userList.push({label: element, value: element})
-        })
 
-        const users = this.state.users.map(user=> {
-            console.log(user.username)
-            console.log(user.name)
-            return <li key={user.username}> {user.username} </li>
-         })
+
+    render(){
         return (
             <div>
                 
                <h2>Add Event</h2>  
                 <form onSubmit={this.onSubmit}>     
                      <label>Event name: </label>
-                     <input  type="text" required value={this.state.name} onChange={this.onChangeGroupname} />
+                     <input  type="text" required value={this.state.eventName} onChange={this.onChangeEventname} />
                    
 
                     <label>Description: </label>
-                    <input  type="text" required value={this.state.name} onChange={this.onChangeGroupname} />
- 
-                    <label>Interval: </label>
-                    <input  type="text" required value={this.state.name} onChange={this.onChangeGroupname} />
-
-                     <input type="submit" value="Create Group" />
+                    <input  type="text" required value={this.state.description} onChange={this.onChangeDescription} />
+                    <div>
+                        <label>Date: </label>
+                        <DateTimeRangePicker value={this.state.date} onChange={this.onChangeDate} calendarClassName="react-datetime-picker__wrapper"/>
+                        
+                    </div>
+                     <input type="submit" value="Create Event" />
                 </form>
             </div>    
         )
