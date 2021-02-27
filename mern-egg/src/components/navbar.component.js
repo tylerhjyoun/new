@@ -21,6 +21,9 @@ export default class Navbar extends Component {
                         <li className="navbar-item">
                             <Link to="/groups" className="nav-link"> Show Groups </Link>
                         </li>
+                        <li className="navbar-item">
+                            <Link to="/events" className="nav-link"> My Events </Link>
+                        </li>
                     </ul>
                     </div>
             </nav>

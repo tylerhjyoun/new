@@ -5,8 +5,10 @@ import axios from 'axios'
 const Group = props => (
     <tr>
         <td>{props.group.groupName}</td>
-        {/* <td>{props.group.groupMembers}</td> */}
-        <td>...members...</td>
+        <Link to={`/users/${props.group.groupMembers[0]}`}>       
+            <td>{props.group.groupMembers}</td>
+        </Link>
+        {/* <td>...members...</td> */}
         <td>{props.group.groupCount}</td>
         <td>
             <a href="#" onClick={() => { props.deleteGroup(props.group._id) }}>delete</a>
