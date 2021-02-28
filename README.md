@@ -7,7 +7,8 @@ sudo npm install -g nodemon This lets us look into our server in real time, so t
 
 make sure its v4.0+
 # To run the server
-cd backend nodemon server
+cd backend
+nodemon server
 
 # To start the frontend
 Begin in the git repo
