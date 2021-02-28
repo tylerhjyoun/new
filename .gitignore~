@@ -1,3 +1,2 @@
 .gitignore
-node_modules
-mern-egg/node_modules
+node_modules/
