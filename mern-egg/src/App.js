@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 import Navbar from "./components/navbar.component"
 import Home from "./components/home.component"
 import ShowUsers from "./components/showusers.component"
+import LoginPage from "./components/login.component"
 
 import CreateUser from "./components/create_user.component"
 import ShowGroups from "./components/showgroups.component"
@@ -26,6 +27,7 @@ function App() {
       <Route path="/group" exact component={CreateGroup} />
       <Route path="/events" exact component={MyEvents} />
       <Route path="/event" exact component={CreateEvent} />
+      <Route path="/login" exact component={LoginPage} />
       </div> 
   </Router>  
   );
