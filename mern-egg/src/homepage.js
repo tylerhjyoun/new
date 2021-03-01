@@ -8,7 +8,6 @@ import Navbar from "./components/navbar.component"
 import Home from "./components/home.component"
 import ShowUsers from "./components/showusers.component"
 
-import CreateUser from "./components/create_user.component"
 import ShowGroups from "./components/showgroups.component"
 import CreateGroup from "./components/creategroup.component"
 import MyEvents from "./components/myevents.component"
@@ -21,7 +20,6 @@ export const homepage = () => {
         <br/>
         <Route path="/home" exact component={Home}/> 
         <Route path="/home/users" exact component={ShowUsers} />
-        <Route path="/home/user" exact component={CreateUser} />
         <Route path="/home/groups" exact component={ShowGroups} />
         <Route path="/home/group" exact component={CreateGroup} />
         <Route path="/home/events" exact component={MyEvents} />
