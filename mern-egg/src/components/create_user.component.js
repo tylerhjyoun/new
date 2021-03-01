@@ -56,6 +56,8 @@ export default class CreateUser extends Component {
             username: '',
             usertimer: 0
         })
+        window.location = '/';
+
     }
     render(){
         return (
