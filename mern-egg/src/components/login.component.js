@@ -27,6 +27,7 @@ export default class Login extends Component {
         return (
             <div>
                 Welcome to Eggtimer!
+                <Link to="/user" className="nav-link"> Add new user </Link>
                 <form onSubmit={this.onSubmit}>
                 <label>Username: </label>
                 <input  type="text"
