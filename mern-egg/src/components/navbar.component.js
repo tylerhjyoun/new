@@ -6,23 +6,23 @@ export default class Navbar extends Component {
     render(){
         return (
             <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-                <Link to="/" className="navbar-brand"> Egg Timer</Link>
+                <Link to="/home" className="navbar-brand"> Egg Timer</Link>
                 <div className="collapse navbar-collapse">
                 <ul className="navbar-nav mr-auto">
                     <li className="navbar-item">
-                        <Link to="/users" className="nav-link"> Show Users</Link>
+                        <Link to="/home/users" className="nav-link"> Show Users</Link>
                         </li>
                         <li className="navbar-item">
-                            <Link to="/user" className="nav-link"> Add new user </Link>
+                            <Link to="/home/user" className="nav-link"> Add new user </Link>
                         </li>
                         <li className="navbar-item">
-                            <Link to="/group" className="nav-link"> Create group </Link>
+                            <Link to="/home/group" className="nav-link"> Create group </Link>
                         </li>
                         <li className="navbar-item">
-                            <Link to="/groups" className="nav-link"> Show Groups </Link>
+                            <Link to="/home/groups" className="nav-link"> Show Groups </Link>
                         </li>
                         <li className="navbar-item">
-                            <Link to="/events" className="nav-link"> My Events </Link>
+                            <Link to="/home/events" className="nav-link"> My Events </Link>
                         </li>
                     </ul>
                     </div>
