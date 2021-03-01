@@ -12,11 +12,12 @@ function App() {
   <Router>
       <Switch>
 
-      <Route path="/home" component={homepage}/>
-      <Route path="/" component={Login}/>
-        </Switch>
-        <Route path="/user" exact component={CreateUser} />
+        <Route path="/home" component={homepage}/>
+        <Route path="/" component={Login}/>
 
+      </Switch>
+
+      <Route path="/user" exact component={CreateUser} />
 
   </Router>  
   );

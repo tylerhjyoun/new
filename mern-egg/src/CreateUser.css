@@ -1,0 +1,16 @@
+.createUser {
+    text-align: center;
+    margin-top: 150px;
+    margin-bottom: 100px;
+    margin-left: 390px;
+    margin-right: 390px;
+    background-color: white;
+    padding: 30px 0px;
+}
+
+.signUp {
+    color:rgb(175, 141, 29);
+    font-size: 60px;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-weight: bold;
+}
