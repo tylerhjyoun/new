@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import '../Login.css';
 
 export default class Login extends Component {
     constructor(props) {
@@ -25,20 +26,30 @@ export default class Login extends Component {
 
     render(){
         return (
-            <div>
-                Welcome to Eggtimer!
-                <Link to="/user" className="nav-link"> Add new user </Link>
+            <div class = "submitForm">
+                <div class = "title">
+                    EGGTIMER
+                </div>
+                <div class = "desc">
+                    Welcome to Eggtimer!
+                </div>
                 <form onSubmit={this.onSubmit}>
-                <label>Username: </label>
-                <input  type="text"
+                <input type="text"
+                    placeholder="Username..."
                     required
                     value={this.state.username}
                     onChange={this.onChangeUsername}
                 />
-                <input type="submit" value="Login"/>
+                <input type="password"
+                    placeholder="Password..."
+                    required
+                />
+                <input type="submit" value="LOGIN"/>
                 </form>
+                <Link to="/user" className="nav-link"> Don't have an account? </Link>
            
             </div>    
+
         )
     }
 }

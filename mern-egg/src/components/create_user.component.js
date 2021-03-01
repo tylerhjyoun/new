@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import '../CreateUser.css';
 
 export default class CreateUser extends Component {
     constructor(props) {
@@ -61,8 +62,10 @@ export default class CreateUser extends Component {
     }
     render(){
         return (
-            <div>
-                Create User
+            <div class = "createUser">
+                <div class = "signUp">
+                    Sign Up
+                </div>
                 <form onSubmit={this.onSubmit}>
                 <label>Name: </label>
                 <input  type="text"
@@ -87,5 +90,5 @@ export default class CreateUser extends Component {
            
             </div>    
         )
-        }
+    }
 }

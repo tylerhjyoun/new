@@ -7,7 +7,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   background-color: rgb(17, 9, 158);
+  text-align: center;
 
+}
+
+form {
+  display: inline-block;
 }
 
 code {

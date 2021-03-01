@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Timer from "./timer.component";
 
+import '../Home.css';
+
 const Event = props => (
     <tr>
         <td>{props.event.eventname}</td>
