@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 
-export default class ShowUsers extends Component {
+export default class CreateUser extends Component {
     constructor(props) {
         super(props)
 
@@ -60,7 +60,7 @@ export default class ShowUsers extends Component {
     render(){
         return (
             <div>
-                Add User
+                Create User
                 <form onSubmit={this.onSubmit}>
                 <label>Name: </label>
                 <input  type="text"
