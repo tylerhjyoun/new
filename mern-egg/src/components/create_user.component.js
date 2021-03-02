@@ -9,12 +9,12 @@ export default class CreateUser extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangeTimer = this.onChangeTimer.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
 
         this.state = {
             name: '',
             username: '',
-            usertimer: 0
+            password: ''
         }    
     }
    
@@ -28,9 +28,9 @@ export default class CreateUser extends Component {
             name: e.target.value
         })
     }
-    onChangeTimer(e){
+    onChangePassword(e){
         this.setState({
-            usertimer: e.target.value
+            password: e.target.value
         })
     }
     
@@ -40,7 +40,7 @@ export default class CreateUser extends Component {
         const user = {
             name: this.state.name,
             username: this.state.username,
-            usertimer: this.state.usertimer
+            password: this.state.password
         }
 
         console.log(user)
@@ -54,7 +54,7 @@ export default class CreateUser extends Component {
         this.setState({
             name: '',
             username: '',
-            usertimer: 0
+            password: ''
         })
     }
     render(){
@@ -74,15 +74,14 @@ export default class CreateUser extends Component {
                     value={this.state.username}
                     onChange={this.onChangeUsername}
                 />
-                <label>Timer: </label>
-                <input type="number"
+                <label>Password: </label>
+                <input type="password"
                     required
-                    value={this.state.usertimer}
-                    onChange={this.onChangeTimer}
+                    value={this.state.password}
+                    onChange={this.onChangePassword}
                 />
                 <input type="submit" value="Create User"/>
                 </form>
-           
             </div>    
         )
         }
