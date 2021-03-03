@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 
 export default class Navbar extends Component {
-    render(){
+    render() {
         return (
             <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
                 <Link to="/home" className="navbar-brand"> Egg Timer</Link>
                 <div className="collapse navbar-collapse">
-                <ul className="navbar-nav mr-auto">
-                    <li className="navbar-item">
-                        <Link to="/home/users" className="nav-link"> Show Users</Link>
+                    <ul className="navbar-nav mr-auto">
+                        <li className="navbar-item">
+                            <Link to="/home/users" className="nav-link"> Show Users</Link>
                         </li>
                         <li className="navbar-item">
                             <Link to="/home/group" className="nav-link"> Create group </Link>
@@ -21,8 +21,9 @@ export default class Navbar extends Component {
                         <li className="navbar-item">
                             <Link to="/home/events" className="nav-link"> My Events </Link>
                         </li>
+                        
                     </ul>
-                    </div>
+                </div>
             </nav>
         );
     }
