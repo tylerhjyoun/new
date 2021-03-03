@@ -10,12 +10,12 @@ export default class CreateUser extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangeTimer = this.onChangeTimer.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
 
         this.state = {
             name: '',
             username: '',
-            usertimer: 0
+            password: ''
         }    
     }
    
@@ -29,9 +29,9 @@ export default class CreateUser extends Component {
             name: e.target.value
         })
     }
-    onChangeTimer(e){
+    onChangePassword(e){
         this.setState({
-            usertimer: e.target.value
+            password: e.target.value
         })
     }
     
@@ -41,7 +41,7 @@ export default class CreateUser extends Component {
         const user = {
             name: this.state.name,
             username: this.state.username,
-            usertimer: this.state.usertimer
+            password: this.state.password
         }
 
         console.log(user)
@@ -55,7 +55,7 @@ export default class CreateUser extends Component {
         this.setState({
             name: '',
             username: '',
-            usertimer: 0
+            password: ''
         })
         window.location = '/';
 
@@ -82,19 +82,15 @@ export default class CreateUser extends Component {
                 <input type="password"
                     placeholder="Password..."
                     required
+                    value={this.state.password}
+                    onChange={this.onChangePassword}
                 />
                 <input type="password"
                     placeholder="Re-enter Password..."
                     required
                 />
-                <input type="number"
-                    required
-                    value={this.state.usertimer}
-                    onChange={this.onChangeTimer}
-                />
                 <input type="submit" value="Create User"/>
                 </form>
-           
             </div>    
         )
     }

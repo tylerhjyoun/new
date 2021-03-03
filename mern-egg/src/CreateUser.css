@@ -30,11 +30,3 @@ input[type=password] {
     box-sizing: border-box;
     background-color: rgb(223, 223, 223);
 }
-
-input[type=number] {
-    width: 70%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    background-color: rgb(223, 223, 223);
-}
