@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Select from 'react-select'
+import auth from './auth'
 
 export default class CreateGroup extends Component {
     constructor(props) {
@@ -62,7 +63,13 @@ export default class CreateGroup extends Component {
         console.log(group)
 
         axios.post(`http://localhost:5000/groups/add`, group)
-            .then(res => console.log(res.data))
+            .then(
+                (res) => console.log(res.data),
+                auth.logout(() => {
+                    console.log(this.props.history)
+                    this.props.history.push("/home")
+                })
+            )
             .catch((error) => {
                 console.log(error);
               })
@@ -72,7 +79,7 @@ export default class CreateGroup extends Component {
             groupMembers: [],
             groupCount: 0
         })
-        window.location = '/groups';
+
     }
 
    
@@ -83,9 +90,7 @@ export default class CreateGroup extends Component {
         })
 
         const users = this.state.users.map(user=> {
-            console.log(user.username)
-            console.log(user.name)
-            return <li key={user.username}> {user.username} </li>
+              return <li key={user.username}> {user.username} </li>
          })
         return (
             <div>
