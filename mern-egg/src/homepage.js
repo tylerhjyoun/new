@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 import Navbar from "./components/navbar.component"
 import Home from "./components/home.component"
 import ShowUsers from "./components/showusers.component"
-
+ 
 import ShowGroups from "./components/showgroups.component"
 import CreateGroup from "./components/creategroup.component"
 import MyEvents from "./components/myevents.component"
@@ -17,6 +17,7 @@ export const homepage = () => {
     return (
          <div className="container">
         <Navbar/>
+        
         <br/>
         <Route path="/home" exact component={Home}/> 
         <Route path="/home/users" exact component={ShowUsers} />
