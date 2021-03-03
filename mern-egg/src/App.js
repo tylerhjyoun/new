@@ -8,7 +8,6 @@ import CreateUser from "./components/create_user.component"
 import { ProtectedRoute } from "./ProtectedRoute"
 
 function App() {
-
   return (
     <Router>
       <Switch>
