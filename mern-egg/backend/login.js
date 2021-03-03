@@ -17,7 +17,8 @@ router.post('/', (req, res) =>{
             if(req.body.password == user[0].password){
                 const user = {username: req.body.username}
                 const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
-                res.json({ accessToken: accessToken })
+                res.json({user: user})
+                // res.json({ accessToken: accessToken })
             } else {
                 res.json('Incorrect Combination')
             }
