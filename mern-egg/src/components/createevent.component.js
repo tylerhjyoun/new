@@ -61,7 +61,7 @@ export default class CreateEvent extends Component {
             description: [],
             date: ''
         })
-        window.location = '/events';
+        window.location = 'home/events';
     }
 
 
