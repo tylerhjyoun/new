@@ -1,6 +1,6 @@
 const router = require('express').Router();
-let User = require('./models/user.model');
-let Group = require('./models/group.model');
+let User = require('../models/user.model');
+let Group = require('../models/group.model');
 
 require('dotenv').config()
 const jwt = require('jsonwebtoken')

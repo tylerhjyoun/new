@@ -23,7 +23,7 @@ connection.once('open', () => {
 const usersRouter = require('./routes/users');
 const groupsRouter = require('./routes/groups');
 const eventsRouter = require('./routes/events');
-const loginRouter = require('./login')
+const loginRouter = require('./routes/login')
 
 app.use('/login', loginRouter);
 app.use('/users', usersRouter);
