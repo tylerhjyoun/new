@@ -62,24 +62,31 @@ export default class CreateUser extends Component {
     }
     render(){
         return (
-            <div class = "createUser">
+            <div className = "createUser">
                 <div class = "signUp">
                     Sign Up
                 </div>
                 <form onSubmit={this.onSubmit}>
-                <label>Name: </label>
-                <input  type="text"
+                <input type="text"
+                    placeholder="Name..."
                     required
                     value={this.state.name}
                     onChange={this.onChangeName}
                 />
-                <label>Username: </label>
-                <input  type="text"
+                <input type="text"
+                    placeholder="Username..."
                     required
                     value={this.state.username}
                     onChange={this.onChangeUsername}
                 />
-                <label>Timer: </label>
+                <input type="password"
+                    placeholder="Password..."
+                    required
+                />
+                <input type="password"
+                    placeholder="Re-enter Password..."
+                    required
+                />
                 <input type="number"
                     required
                     value={this.state.usertimer}

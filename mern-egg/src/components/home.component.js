@@ -40,21 +40,21 @@ export default class MyEvents extends Component {
 
     render() {
         return (
-            <div>
+            <div className ="background">
                <h2> Home </h2> 
  
-            <table className="table">
-            <thead className="thead-light">
-                <tr>
-                    <th>Event Name</th>
-                    <th>Description</th>
-                    <th> Time Left </th>
-                </tr>
-            </thead>
-                <tbody>
-                { this.eventList() }
-                </tbody>
-            </table>
+                <table className="table">
+                    <thead className="thead-light">
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Description</th>
+                            <th> Time Left </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { this.eventList() }
+                    </tbody>
+                </table>
             </div>    
         );
     }

@@ -26,7 +26,7 @@ export default class Login extends Component {
 
     render(){
         return (
-            <div class = "submitForm">
+            <div className = "submitForm">
                 <div class = "title">
                     EGGTIMER
                 </div>
