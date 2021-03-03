@@ -53,7 +53,7 @@ export default class MyEvents extends Component {
         return (
             <div>
                <h2>Logged Events </h2> 
-               <Link to='/event'> Add Event </Link>
+               <Link to='/home/event'> Add Event </Link>
  
             <table className="table">
             <thead className="thead-light">
