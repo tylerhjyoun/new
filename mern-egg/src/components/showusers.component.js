@@ -18,10 +18,13 @@ export default class ShowUsers extends Component {
             users: []
         }    
     }
-   
+    
     componentDidMount(){
-        axios.get(`http://localhost:5000/users`)
+        let user = JSON.parse(sessionStorage.getItem('data'));
+        const token = user.data.id
+        axios.get(`http://localhost:5000/users`, {headers: {"Authorization" : `Bearer ${token}`}})
             .then(res => {
+                console.log(res)
                 this.setState({users: res.data});
             })
             .catch((error) => {
