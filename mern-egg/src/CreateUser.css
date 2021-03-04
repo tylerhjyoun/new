@@ -1,0 +1,32 @@
+.createUser {
+    text-align: center;
+    margin-top: 150px;
+    margin-bottom: 100px;
+    margin-left: 390px;
+    margin-right: 390px;
+    background-color: white;
+    padding: 30px 0px;
+}
+
+.signUp {
+    color:rgb(175, 141, 29);
+    font-size: 60px;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-weight: bold;
+}
+
+input[type=text] {
+    width: 70%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    background-color: rgb(223, 223, 223);
+}
+
+input[type=password] {
+    width: 70%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    background-color: rgb(223, 223, 223);
+}
