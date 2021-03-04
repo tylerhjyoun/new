@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Timer from "./timer.component";
+
+import '../Home.css';
 import auth from "./auth"
+
 const Event = props => (
     <tr>
         <td>{props.event.eventname}</td>
@@ -39,7 +42,7 @@ export default class MyEvents extends Component {
 
     render() {
         return (
-            <div>
+            <div className ="background">
                 <h2> Home </h2> <button onClick={() => {
                     auth.logout(() => {
                         console.log(this.props.history)

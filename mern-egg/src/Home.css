@@ -1,0 +1,20 @@
+body {
+    background: linear-gradient(180deg, rgb(179, 16, 130), rgb(162, 172, 20));
+    background-attachment: fixed;
+}
+
+.background {
+    margin-top: 0px;
+    background-color: white;
+    margin-bottom: 300px;
+}
+
+h2 {
+    color:rgb(175, 141, 29);
+    font-size: 60px;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-weight: bold;
+}
+table {
+    background-color: white;   
+}
