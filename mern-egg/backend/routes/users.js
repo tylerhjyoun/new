@@ -1,9 +1,13 @@
 const router = require('express').Router();
 let User = require('../models/user.model');
+let Group = require('../models/group.model')
 require('dotenv').config()
- 
-router.route('/').get((req, res) => {
-    User.find()
+const jwt = require('jsonwebtoken')
+
+
+router.get('/', authorizeUser, (req, res) => {
+  console.log(req.user)
+  User.find()
       .then(users => res.json(users))
       .catch(err => res.status(400).json('Error: ' + err));
   });
@@ -19,6 +23,20 @@ router.route('/add').post((req, res) => {
         .then(() => res.json('User added'))
         .catch(err => res.status(400).json('Error: ' + err));
 })
+
+function authorizeUser(req,res,next){
+  const authHeader = req.headers['authorization']
+  const token = authHeader && authHeader.split(' ')[1]
+
+  if (token == null) return res.sendStatus(401)
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET,(err,user)=> {
+    console.log(err)
+    if(err) return res.sendStatus(403)
+    req.user = user
+    next()
+  })
+
+}
 
 
 
