@@ -26,6 +26,12 @@ router.post('/', (req, res) =>{
         .catch(()=>res.json({ accessToken: "Cannot find user" }))
  })
 
+ router.post('/token', (req, res) =>{
+    const token = req.body.usertoken.split(' ');
+    const decoded = jwt.verify(token[0], process.env.ACCESS_TOKEN_SECRET)
+    console.log(decoded)
+    res.json({user: decoded})
+ })
 
 
  
