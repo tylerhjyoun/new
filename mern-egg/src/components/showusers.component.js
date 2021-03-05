@@ -20,8 +20,8 @@ export default class ShowUsers extends Component {
     }
     
     componentDidMount(){
-        let user = JSON.parse(sessionStorage.getItem('data'));
-        const token = user.data.id
+        let user = sessionStorage.getItem('data');
+        const token = user
         axios.get(`http://localhost:5000/users`, {headers: {"Authorization" : `Bearer ${token}`}})
             .then(res => {
                 console.log(res)
