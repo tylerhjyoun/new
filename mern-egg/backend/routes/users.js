@@ -12,16 +12,27 @@ router.get('/', authorizeUser, (req, res) => {
       .catch(err => res.status(400).json('Error: ' + err));
   });
 
-router.route('/add').post((req, res) => {
+router.route('/').post((req, res) => {
     const name = req.body.name;
     const username = req.body.username;
     const password = req.body.password;
+    const friends = req.body.friends
 
-    const newUser = new User({name, username, password});
+    const newUser = new User({name, username, password, friends});
 
     newUser.save()
         .then(() => res.json('User added'))
         .catch(err => res.status(400).json('Error: ' + err));
+})
+
+router.post('/addfriend', (req, res) => {
+  User.findById(req.params.id)
+    .then(friend => {
+      friend.friends.push(req.body)
+    })
+  const friends = req.body.friends
+
+  
 })
 
 function authorizeUser(req,res,next){
