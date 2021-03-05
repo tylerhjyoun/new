@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Timer from "./timer.component";
-
 import '../Home.css';
 import auth from "./auth"
 
@@ -19,7 +18,8 @@ export default class MyEvents extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            events: []
+            events: [],
+            username: ''
         }
     }
 
@@ -42,14 +42,26 @@ export default class MyEvents extends Component {
 
     render() {
         return (
-            <div className ="background">
+            <div className="background">
                 <h2> Home </h2> <button onClick={() => {
                     auth.logout(() => {
                         console.log(this.props.history)
                         this.props.history.push("/")
                     })
                 }}> Logout </button>
-
+                <div>JWT: {sessionStorage.getItem('data')}</div>
+                <button onClick={() => {
+                    const usertoken = { usertoken: sessionStorage.getItem('data') }
+                    axios.post(`http://localhost:5000/login/token`, usertoken)
+                        .then((res) => {
+                            this.setState({username: res.data.user.username})
+                        }
+                        )
+                        .catch((error) => {
+                            console.log(error);
+                        })
+                }
+                }> User</button>{this.state.username}
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
@@ -62,7 +74,7 @@ export default class MyEvents extends Component {
                         {this.eventList()}
                     </tbody>
                 </table>
-            </div>
+            </div >
         );
     }
 }
