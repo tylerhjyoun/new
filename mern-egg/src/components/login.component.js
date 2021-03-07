@@ -25,18 +25,26 @@ function Login(props) {
 
         axios.post(`http://localhost:5000/login/`, data)
             .then(res => {
-                if (res.data.user.username == username) {
-                    console.log("Logged In!")
-                    auth.login(() => props.history.push("/home"))
+                const token = res.data.accessToken
+                if(token == "Incorrect Combination"){
+                    console.log(token)
                 }
-                else {
-                    console.log("User not found")
+                else if(token == "Cannot find user"){
+                    console.log(token)
+                } else{
+                    console.log("Logged In!")
+                    sessionStorage.setItem('data', token)
+
+                    auth.login(() => props.history.push("/home"))
                 }
             })
             .catch((error) => {
                 console.log(error);
             })
     }
+
+
+
     return (
         <div className = "submitForm">
             <div class = "title">
