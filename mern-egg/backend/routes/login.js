@@ -16,8 +16,8 @@ router.post('/', (req, res) =>{
     User.find({username: req.body.username})
         .then((user) =>{
             if(req.body.password == user[0].password){
-                const user = {username: req.body.username}
-                const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
+                const id = {id: user[0]._id}
+                const accessToken = jwt.sign(id, process.env.ACCESS_TOKEN_SECRET)
                 res.json({ accessToken: accessToken })
             } else {
                 res.json({ accessToken: "Incorrect Combination"})
@@ -27,10 +27,9 @@ router.post('/', (req, res) =>{
  })
 
  router.post('/token', (req, res) =>{
-    const token = req.body.usertoken.split(' ');
+    const token = req.body.token.split(' ');
     const decoded = jwt.verify(token[0], process.env.ACCESS_TOKEN_SECRET)
-    console.log(decoded)
-    res.json({user: decoded})
+    res.json({id: decoded})
  })
 
 
