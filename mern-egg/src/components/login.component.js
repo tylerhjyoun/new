@@ -10,7 +10,6 @@ function Login(props) {
 
     function onChangeUsername(e) {
         setUsername(e.target.value)
-        console.log(username)
     }
     function onChangePassword(e) {
         setPassword(e.target.value)
