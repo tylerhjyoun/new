@@ -5,20 +5,23 @@ export default class Timer extends Component {
         super(props)
         this.state = {
             endtime: this.props.endtime,
-            count: Math.floor((new Date(this.props.endtime).getTime() - new Date().getTime()) / (1000))
+            count: Math.floor((new Date(this.props.endtime).getTime()  + new Date(this.props.endtime).getDate() 
+                                - new Date().getTime() - new Date().getDate())/ (1000))
         }
     }
 
     render() {
-        const { count } = this.state
-        const hours = Math.floor(count / 3600)
-        const counttemp = count % 3600
-        const minutes = Math.floor(counttemp / 60)
-        const seconds = Math.floor(counttemp % 60)
+        const count = (this.state.count <= 0) ? 0 : this.state.count; 
+        const days = Math.floor(count / 86400)
+        const counttemp1 = count % 86400
+        const hours = Math.floor(counttemp1 / 3600)
+        const counttemp2 = counttemp1 % 3600
+        const minutes = Math.floor(counttemp2 / 60)
+        const seconds = Math.floor(counttemp2 % 60)
 
         return (
             <div>
-                {hours}:{minutes}:{seconds}
+                {days}:{hours}:{minutes}:{seconds}
             </div>
         )
     }
