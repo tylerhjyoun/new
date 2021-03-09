@@ -14,7 +14,6 @@ class Auth {
     }
 
     isAuthenticated() {
-        console.log("check")
         return this.authenticated
     }
 }

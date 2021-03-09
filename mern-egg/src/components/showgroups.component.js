@@ -30,7 +30,6 @@ export default class ShowGroups extends Component {
     deleteGroup(id){
         axios.delete('http://localhost:5000/groups/'+id)
             .then(response => { console.log(response.data)});
-  
         this.setState({
             groups: this.state.groups.filter(el => el._id !== id)
       })    
