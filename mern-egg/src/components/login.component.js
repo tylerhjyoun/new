@@ -32,8 +32,7 @@ function Login(props) {
                     console.log(token)
                 } else{
                     console.log("Logged In!")
-                    sessionStorage.setItem('data', token)
-
+                    localStorage.setItem('data', token)
                     auth.login(() => props.history.push("/home"))
                 }
             })
