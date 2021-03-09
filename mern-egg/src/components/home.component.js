@@ -35,8 +35,15 @@ export default class MyEvents extends Component {
     }
 
     eventList() {
-        return this.state.events.map(currentevent => {
-            return <Event event={currentevent} key={currentevent._id} />
+        this.state.events.sort(function(a, b) {
+            const aval = Math.floor((new Date(a.endtime).getTime() + new Date(a.endtime).getDate() - new Date().getTime() - new Date().getDate())/ (1000));
+            const bval = Math.floor((new Date(b.endtime).getTime() + new Date(b.endtime).getDate() - new Date().getTime() - new Date().getDate())/ (1000));
+            return aval - bval;
+        });
+        const filtered = this.state.events.filter(e => 
+            Math.floor((new Date(e.endtime).getTime() + new Date(e.endtime).getDate() - new Date().getTime() - new Date().getDate()) / 1000) >= 0);
+        return filtered.map(currentevent => {
+             return <Event event={currentevent} deleteEvent={this.deleteEvent} key={currentevent._id}/>
         })
     }
 
