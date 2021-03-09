@@ -56,9 +56,9 @@ export default class MyEvents extends Component {
                         this.props.history.push("/")
                     })
                 }}> Logout </button>
-                <div>JWT: {sessionStorage.getItem('data')}</div>
+                <div>JWT: {localStorage.getItem('data')}</div>
                 <button onClick={() => {
-                    const token = { token: sessionStorage.getItem('data') }
+                    const token = { token: localStorage.getItem('data') }
                     axios.post(`http://localhost:5000/login/token`, token)
                         .then((res) => {
                             console.log(res.data.id.id)

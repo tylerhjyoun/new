@@ -46,7 +46,7 @@ export default class ShowGroups extends Component {
                 for (var i = 0; i < groupsData.length; i++) { 
                     var curr = groupsData[i]
                     /* bro */
-                    const usertoken = { usertoken: sessionStorage.getItem('data') }
+                    const usertoken = { usertoken: localStorage.getItem('data') }
                     if (curr["groupMembers"] === usertoken) { 
                         final.push(curr)
                     } 
