@@ -19,7 +19,7 @@ export default class MyEvents extends Component {
         super(props)
         this.state = {
             events: [],
-            username: ''
+            id: ''
         }
     }
 
@@ -51,17 +51,18 @@ export default class MyEvents extends Component {
                 }}> Logout </button>
                 <div>JWT: {sessionStorage.getItem('data')}</div>
                 <button onClick={() => {
-                    const usertoken = { usertoken: sessionStorage.getItem('data') }
-                    axios.post(`http://localhost:5000/login/token`, usertoken)
+                    const token = { token: sessionStorage.getItem('data') }
+                    axios.post(`http://localhost:5000/login/token`, token)
                         .then((res) => {
-                            this.setState({username: res.data.user.username})
+                            console.log(res.data.id.id)
+                            this.setState({ id: res.data.id.id })
                         }
                         )
                         .catch((error) => {
                             console.log(error);
                         })
                 }
-                }> User</button>{this.state.username}
+                }> User</button>{this.state.id}
                 <table className="table">
                     <thead className="thead-light">
                         <tr>

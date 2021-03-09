@@ -21,7 +21,12 @@ export default class Navbar extends Component {
                         <li className="navbar-item">
                             <Link to="/home/events" className="nav-link"> My Events </Link>
                         </li>
-                        
+                        <li className="navbar-item">
+                            <Link to="/home/user/friends/addfollowing" className="nav-link"> Follow New Users </Link>
+                        </li>
+                        <li className="navbar-item">
+                            <Link to="/home/user/friends/showfollowing" className="nav-link"> Show Following </Link>
+                        </li>
                     </ul>
                 </div>
             </nav>
