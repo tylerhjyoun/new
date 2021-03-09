@@ -25,21 +25,7 @@ export default class ShowGroups extends Component {
         }  
     
     }
-   
-    componentDidMount(){
-        axios.get(`http://localhost:5000/groups`)
-            .then(res => {
-                console.log(res.data)
-                this.setState({
-                    groups: res.data,
-                });
-                
-            })
-            .catch((error) => {
-                console.log(error);
-              })
 
-    }
 
     deleteGroup(id){
         axios.delete('http://localhost:5000/groups/'+id)
@@ -48,6 +34,34 @@ export default class ShowGroups extends Component {
         this.setState({
             groups: this.state.groups.filter(el => el._id !== id)
       })    
+    }
+
+    componentDidMount() { 
+        axios.get(`http://localhost:5000/groups`)
+            .then(res => {
+                console.log(res.data)
+                const groupsData = res.data
+                var final = []
+
+                for (var i = 0; i < groupsData.length; i++) { 
+                    var curr = groupsData[i]
+                    /* bro */
+                    const usertoken = { usertoken: sessionStorage.getItem('data') }
+                    if (curr["groupMembers"] === usertoken) { 
+                        final.push(curr)
+                    } 
+        
+                }
+
+                this.setState({
+                    groups: final,
+                });
+                
+            })
+            .catch((error) => {
+                console.log(error);
+              })
+
     }
 
     groupList(){
