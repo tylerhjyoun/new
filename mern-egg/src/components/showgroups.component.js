@@ -25,8 +25,18 @@ export default class ShowGroups extends Component {
         }  
     
     }
-   
-    componentDidMount(){
+
+
+    deleteGroup(id){
+        axios.delete('http://localhost:5000/groups/'+id)
+            .then(response => { console.log(response.data)});
+  
+        this.setState({
+            groups: this.state.groups.filter(el => el._id !== id)
+      })    
+    }
+
+    componentDidMount() { 
         axios.get(`http://localhost:5000/groups`)
             .then(res => {
                 console.log(res.data)
@@ -38,16 +48,22 @@ export default class ShowGroups extends Component {
             .catch((error) => {
                 console.log(error);
               })
+        
+        const final = []
+        const data = this.state.groups
+        for (var i = 0; i < data.length; i++) { 
+            var curr = data[i]
+            if (curr["groupMembers"] === this.state.username) { 
+                final.push(curr)
+            } 
 
-    }
+        }
 
-    deleteGroup(id){
-        axios.delete('http://localhost:5000/groups/'+id)
-            .then(response => { console.log(response.data)});
-  
+        console.log(final)
         this.setState({
-            groups: this.state.groups.filter(el => el._id !== id)
-      })    
+            groups: final,
+        });
+
     }
 
     groupList(){
