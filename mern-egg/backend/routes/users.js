@@ -24,9 +24,9 @@ router.post('/', (req, res) => {
   const password = req.body.password;
   const followers = req.body.followers;
   const following = req.body.following
-
+  
   const newUser = new User({ name, username, password, followers, following });
-
+  console.log(newUser)
   newUser.save()
     .then(() => res.json('User added'))
     .catch(err => res.status(400).json('Error: ' + err));
