@@ -40,29 +40,27 @@ export default class ShowGroups extends Component {
         axios.get(`http://localhost:5000/groups`)
             .then(res => {
                 console.log(res.data)
+                const groupsData = res.data
+                var final = []
+
+                for (var i = 0; i < groupsData.length; i++) { 
+                    var curr = groupsData[i]
+                    /* bro */
+                    const usertoken = { usertoken: sessionStorage.getItem('data') }
+                    if (curr["groupMembers"] === usertoken) { 
+                        final.push(curr)
+                    } 
+        
+                }
+
                 this.setState({
-                    groups: res.data,
+                    groups: final,
                 });
                 
             })
             .catch((error) => {
                 console.log(error);
               })
-        
-        const final = []
-        const data = this.state.groups
-        for (var i = 0; i < data.length; i++) { 
-            var curr = data[i]
-            if (curr["groupMembers"] === this.state.username) { 
-                final.push(curr)
-            } 
-
-        }
-
-        console.log(final)
-        this.setState({
-            groups: final,
-        });
 
     }
 
