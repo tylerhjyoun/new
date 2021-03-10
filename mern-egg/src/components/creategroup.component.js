@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Select from 'react-select'
 import auth from './auth'
-import '../Login.css';
 
 export default class CreateGroup extends Component {
     constructor(props) {
@@ -19,7 +18,7 @@ export default class CreateGroup extends Component {
             groupCount: 0,
             users: [],
             id: '',
-            currentUser: ''
+            currentUser: []
         }
     }
 
@@ -34,6 +33,7 @@ export default class CreateGroup extends Component {
                             users: res.data.map(user => ({id: user._id, username: user.username})).filter(el => el.id !== this.state.id),
                             currentUser: res.data.filter(el => el._id === this.state.id).map(user => ({id: user._id, username: user.username}))
                         })
+                        console.log(this.state.currentUser)
                     })
                     .catch((error) => {
                         console.log(error);

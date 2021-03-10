@@ -14,7 +14,7 @@ import MyEvents from "./components/myevents.component"
 import CreateEvent from "./components/createevent.component"
 import AddFollowing from "./components/addfollowing.component"
 import ShowFollowing from "./components/showfollowing.component"
-
+import ShowUser from "./components/showuser.component"
 export const homepage = () => {
     return (
          <div className="container">
@@ -29,6 +29,7 @@ export const homepage = () => {
         <Route path="/home/event" exact component={CreateEvent} />
         <Route path="/home/user/friends/addFollowing" exact component={AddFollowing} />
         <Route path="/home/user/friends/showfollowing" exact component={ShowFollowing} />
+        <Route path="/home/users/:id" component={ShowUser} />
 
         </div> 
      );
