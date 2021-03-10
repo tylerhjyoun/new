@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios'
 import Select from 'react-select'
 import auth from './auth'
@@ -7,7 +7,7 @@ import auth from './auth'
 const User = props => (
     <tr>
         <td>{props.user.name}</td>
-        <td>{props.user.username}</td>
+        <td><Link to={'/home/users/'+props.user._id}>{props.user.username}</Link></td>
         <td>
             <a href="#" onClick={() => {
                 props.addFollowing(props.user._id)

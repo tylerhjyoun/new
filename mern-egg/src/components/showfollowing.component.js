@@ -8,6 +8,7 @@ const User = props => (
     <tr>
         <td>{props.user.name}</td>
         <td>{props.user.username}</td>
+        
         <td>
             <a href="#" onClick={() => { props.unFollow(props.user._id) }}>un-follow</a>
         </td>
