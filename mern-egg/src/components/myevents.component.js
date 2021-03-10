@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
-
+import moment from 'moment'
 
 
 const Event = props => (
     <tr>
         <td>{props.event.eventname}</td>
         <td>{props.event.description}</td>
-        <td>{props.event.starttime} until {props.event.endtime}</td>
+        <td>{moment(props.event.starttime).format("ddd, MMM DD HH:mm a")} until {moment(props.event.endtime).format("ddd, MMM DD HH:mm a")}</td>
         <td>
             <a href="#" onClick={() => { props.deleteEvent(props.event._id) }}>delete event</a>
         </td>
@@ -25,6 +25,8 @@ export default class MyEvents extends Component {
     }
    
     componentDidMount(){
+        const a = new Date()
+        console.log(a)
         axios.get(`http://localhost:5000/events`)
             .then(res => {
                 this.setState({events: res.data});
