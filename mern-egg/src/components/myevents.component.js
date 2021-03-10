@@ -61,7 +61,7 @@ export default class MyEvents extends Component {
     render() {
         return (
             <div>
-               <h2>Logged Events </h2> 
+               <h2>Upcoming Events </h2> 
                <Link to='/home/event'> Add Event </Link>
  
             <table className="table">
