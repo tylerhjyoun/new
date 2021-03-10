@@ -106,7 +106,7 @@ export default class CreateEvent extends Component {
                     <input type="text" required value={this.state.description} onChange={this.onChangeDescription} />
                     <div>
                         <label>Date: </label>
-                        <DateTimeRangePicker required value={this.state.date} onChange={this.onChangeDate} calendarClassName="react-datetime-picker__wrapper" />
+                        <DateTimeRangePicker required minDate={new Date()} value={this.state.date} onChange={this.onChangeDate} calendarClassName="react-datetime-picker__wrapper" />
                     </div>
                     <input type="submit" value="Create Event" />
                 </form>
