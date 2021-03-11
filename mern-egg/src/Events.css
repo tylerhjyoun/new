@@ -8,3 +8,14 @@ button.RemoveButton {
     cursor: pointer;
     font-weight: bold;
 }
+
+.AddEvent {
+    background-color: #231380;
+    border: none;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-weight: bold;
+}

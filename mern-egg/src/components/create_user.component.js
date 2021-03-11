@@ -100,7 +100,7 @@ export default class CreateUser extends Component {
                             onChange={this.onChangePassword}
                         />
 
-                        <input type="submit" value="Create User" />
+                        <input className = "login" type="submit" value="Create User" />
                     </form>
                 </div>
             </div >
