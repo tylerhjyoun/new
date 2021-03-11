@@ -23,37 +23,24 @@ export default class MyEvents extends Component {
             user: []
         }
     }
-
     componentDidMount() {
-        const token = { token: localStorage.getItem('data') }
+        const token = { token: localStorage.getItem('data') } // determine user that is logged in and set state to its id
         axios.post(`http://localhost:5000/login/token`, token)
             .then((res) => {
-                console.log(res.data.id.id)
-                this.setState({
-                    id: res.data.id.id
-                })
-                axios.get(`http://localhost:5000/users/` + this.state.id)
+                this.setState({ id: res.data.id.id })
+                axios.get(`http://localhost:5000/events/find/` + this.state.id)
                     .then(response => {
                         this.setState({
-                            user: response.data,
-                        });
+                            events: response.data,
+                        })
                     })
                     .catch((error) => {
                         console.log(error);
                     })
-                axios.get(`http://localhost:5000/events`)
-                    .then(res => {
-                        this.setState({ events: res.data.filter(el => el.user[0].id === this.state.id) });
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    })
-            }
-            )
+            })
             .catch((error) => {
                 console.log(error);
-            })
-
+                        })
     }
 
     eventList() {

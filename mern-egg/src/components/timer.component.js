@@ -21,7 +21,7 @@ export default class Timer extends Component {
 
         return (
             <div>
-                {days}:{hours}:{minutes}:{seconds}
+                {days} days {hours} hours {minutes} minutes {seconds} seconds 
             </div>
         )
     }
