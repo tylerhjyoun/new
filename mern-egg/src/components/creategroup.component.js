@@ -16,101 +16,105 @@ export default class CreateGroup extends Component {
             groupName: '',
             groupMembers: [],
             groupCount: 0,
-            users: []
-        }    
+            users: [],
+            id: '',
+            currentUser: []
+        }
     }
-   
-    componentDidMount(){
-        axios.get(`http://localhost:5000/users`)
-            .then(res => {
 
-                this.setState({
-                     users: res.data.map(user=>user.username)
-                })            
+    componentDidMount() {
+        const token = { token: localStorage.getItem('data') } // determine user that is logged in and set state to its id
+        axios.post(`http://localhost:5000/login/token`, token)
+            .then((res) => {
+                this.setState({ id: res.data.id.id })
+                axios.get(`http://localhost:5000/users`)
+                    .then(res => {
+                        this.setState({
+                            users: res.data.map(user => ({id: user._id, username: user.username})).filter(el => el.id !== this.state.id),
+                            currentUser: res.data.filter(el => el._id === this.state.id).map(user => ({id: user._id, username: user.username}))
+                        })
+                        console.log(this.state.currentUser)
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
             })
             .catch((error) => {
                 console.log(error);
-              })
+            })
 
-    } 
 
-    onChangeGroupname(e){
+
+    }
+
+    onChangeGroupname(e) {
 
         this.setState({
             groupName: e.target.value
         })
     }
 
-    
 
-    onChangeUsers(e){
+
+    onChangeUsers(e) {
         this.setState({
             groupMembers: e
-        }    
+        }
         )
     }
 
     onSubmit(e) {
         e.preventDefault();
-
+       
         const group = {
             groupName: this.state.groupName,
-            groupMembers: this.state.groupMembers.map(function(item) {
-                return item['label']
-            }),
+            groupMembers: this.state.groupMembers.map(user => ({id: user.value, username: user.label})).concat(this.state.currentUser),
             groupCount: this.state.groupMembers.length
         }
-        console.log(group)
-
-        axios.post(`http://localhost:5000/groups/add`, group)
-            .then(
-                (res) => console.log(res.data),
-                auth.logout(() => {
-                    console.log(this.props.history)
-                    this.props.history.push("/home")
-                })
-            )
-            .catch((error) => {
-                console.log(error);
-              })
-        
+        console.log(group.groupMembers)
         this.setState({
             groupName: '',
             groupMembers: [],
             groupCount: 0
         })
-
+        axios.post(`http://localhost:5000/groups/add`, group)
+            .then(
+                (res) => console.log(res.data),
+                auth.login(() => {
+                    this.props.history.push("/home/groups")
+                }),
+            )
+            .catch((error) => {
+                console.log(error);
+            })
+            
     }
 
-   
-    render(){
+
+    render() {
         const userList = [];
-        this.state.users.forEach(function(element) {
-            userList.push({label: element, value: element})
+        this.state.users.forEach(function (element) {
+            userList.push({ label: element.username, value: element.id })
         })
 
-        const users = this.state.users.map(user=> {
-              return <li key={user.username}> {user.username} </li>
-         })
         return (
-            <div>
-                
-               <h2>Add Group</h2>  
-                <form onSubmit={this.onSubmit}>     
-                     <div>
-                    <label>Group name: </label>
+            <div className="bg-light">
+                <div class="title">Add Group</div>
+                <form onSubmit={this.onSubmit}>
+                    <div>
+                        <label>Group name: </label>
                     </div>
-                    <input  type="text" required value={this.state.name} onChange={this.onChangeGroupname} />
-                    <div> 
+                    <input type="text" required value={this.state.name} onChange={this.onChangeGroupname} />
+                    <div>
 
-                    <label>Members: </label>
-                                       <Select isMulti ref="userInput" setValue={this.state.group} options={userList} onChange={this.onChangeUsers}
-                                        />
-                  
-                        </div>
-                    <input type="submit" value="Create Group" className="btn btn-primary"/>
+                        <label>Members: </label>
+                        <Select isMulti ref="userInput" setValue={this.state.group} options={userList} onChange={this.onChangeUsers}
+                        />
+
+                    </div>
+                    <input type="submit" value="Create Group" className="btn btn-primary" />
                 </form>
-            </div>    
+            </div>
         )
-        }
+    }
 }

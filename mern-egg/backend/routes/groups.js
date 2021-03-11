@@ -8,6 +8,7 @@ router.route('/').get((req, res) => {
   });
 
 router.route('/add').post((req, res) => {
+    console.log(req.headers)
     const groupName = req.body.groupName;
     const groupMembers = req.body.groupMembers;
     const groupCount = req.body.groupCount;

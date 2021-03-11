@@ -20,7 +20,7 @@ export default class ShowUsers extends Component {
     }
     
     componentDidMount(){
-        let user = sessionStorage.getItem('data');
+        let user = localStorage.getItem('data');
         const token = user
         axios.get(`http://localhost:5000/users`, {headers: {"Authorization" : `Bearer ${token}`}})
             .then(res => {

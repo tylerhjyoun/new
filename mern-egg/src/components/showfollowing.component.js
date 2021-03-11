@@ -8,6 +8,7 @@ const User = props => (
     <tr>
         <td>{props.user.name}</td>
         <td>{props.user.username}</td>
+        
         <td>
             <a href="#" onClick={() => { props.unFollow(props.user._id) }}>un-follow</a>
         </td>
@@ -30,7 +31,7 @@ export default class ShowFollowing extends Component {
 
 
     componentDidMount() {
-        const token = { token: sessionStorage.getItem('data') } // determine user that is logged in and set state to its id
+        const token = { token: localStorage.getItem('data') } // determine user that is logged in and set state to its id
         axios.post(`http://localhost:5000/login/token`, token)
             .then((res) => {
                 this.setState({ id: res.data.id.id })
@@ -42,7 +43,7 @@ export default class ShowFollowing extends Component {
                             following_count: response.data.following.length,
                             follower_count: response.data.followers.length
                         })
-                        let user = sessionStorage.getItem('data');
+                        let user = localStorage.getItem('data');
                         const usertoken = user
                         axios.get(`http://localhost:5000/users`, { headers: { "Authorization": `Bearer ${usertoken}` } }) // get all users
                             .then(res => {
