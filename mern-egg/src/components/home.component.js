@@ -80,7 +80,7 @@ export default class MyEvents extends Component {
                         Username: {this.state.user.username} <br />
                         Password: ****** <br /><br /><br />
                         </p>
-                        <Link to="/home" className="edit"> Edit Profile </Link>
+                        <Link to="/home/user/edit" className="edit"> Edit Profile </Link>
                     </div>
                 </div>
                 <h3> My Events: </h3>
