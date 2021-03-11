@@ -3,21 +3,16 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Select from 'react-select'
 import auth from './auth'
-import '../Users.css';
 
 const User = props => (
     <tr>
-        <td>
-        <img className = "ListIcon" src = "https://image.flaticon.com/icons/png/512/147/147144.png"
-        alt = "ListIcon" width="40" height="40"
-        ></img>
-        {props.user.name}</td>
+        <td>{props.user.name}</td>
         <td>{props.user.username}</td>
         <td>
-            <button className = "Follow" href="#" onClick={() => {
+            <a href="#" onClick={() => {
                 props.addFollowing(props.user._id)
             }
-            }>Follow</button>
+            }>follow</a>
         </td>
     </tr>
 );
@@ -102,14 +97,13 @@ export default class AddFollowing extends Component {
         })
     }
 
-
     render() {
         return (
             <div>
-                <h2>Search Users </h2>
-                <input class="form-control" id="myInput" type="text" placeholder="Search.."/>
+                <h2>Logged Users </h2>
+
                 <table className="table">
-                    <thead className="thead-custom">
+                    <thead className="thead-light">
                         <tr>
                             <th>Name</th>
                             <th>Username</th>
@@ -120,9 +114,7 @@ export default class AddFollowing extends Component {
                     </tbody>
                 </table>
             </div >
-            
         );
-        
     }
 }
 // export default class AddFriend extends Component {

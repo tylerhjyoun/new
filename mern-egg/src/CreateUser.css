@@ -1,7 +1,7 @@
 .createUser {
     text-align: center;
-    margin-top: 100px;
-    margin-bottom: 150px;
+    margin-top: 150px;
+    margin-bottom: 100px;
     margin-left: 390px;
     margin-right: 390px;
     background-color: white;
@@ -9,7 +9,7 @@
 }
 
 .signUp {
-    color:rgb(15, 15, 80);
+    color:rgb(175, 141, 29);
     font-size: 60px;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
     font-weight: bold;

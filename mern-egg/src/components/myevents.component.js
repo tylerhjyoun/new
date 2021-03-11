@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
-import '../Events.css';
+
 
 
 const Event = props => (
@@ -10,8 +10,7 @@ const Event = props => (
         <td>{props.event.description}</td>
         <td>{props.event.starttime} until {props.event.endtime}</td>
         <td>
-            <button class = "RemoveButton" 
-            href="#" onClick={() => { props.deleteEvent(props.event._id) }}>Remove</button>
+            <a href="#" onClick={() => { props.deleteEvent(props.event._id) }}>delete event</a>
         </td>
      </tr>
 );
@@ -62,9 +61,9 @@ export default class MyEvents extends Component {
             <div>
                <h2>Logged Events </h2> 
                <Link to='/home/event'> Add Event </Link>
-            <input class="form-control" id="myInput" type="text" placeholder="Search.."/>
+ 
             <table className="table">
-            <thead className="thead-custom">
+            <thead className="thead-light">
                 <tr>
                     <th>Event Name</th>
                     <th>Description</th>
