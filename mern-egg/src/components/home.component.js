@@ -50,7 +50,8 @@ export default class MyEvents extends Component {
     render() {
         return (
             <div className="background">
-                <h2> Home </h2> <button onClick={() => {
+                
+                <button onClick={() => {
                     auth.logout(() => {
                         console.log(this.props.history)
                         this.props.history.push("/")
@@ -70,8 +71,24 @@ export default class MyEvents extends Component {
                         })
                 }
                 }> User</button>{this.state.id}
+                <h2> Welcome back, Username!</h2> 
+                <div class = "profile">
+                    <img className = "avatar" src = "https://image.flaticon.com/icons/png/512/147/147144.png"
+                    alt = "Profile Picture" width="150" height="150"
+                    ></img>
+                    <div> 
+                        <h3> My Profile: </h3>
+                        <p> 
+                        Name: John Smith <br/> 
+                        Username: johnsmith123 <br/>
+                        Password: ****** <br/><br/><br/>
+                        </p>
+                        <Link to="/home" className="edit"> Edit Profile </Link>
+                    </div>
+                </div>
+                <h3> My Events: </h3>
                 <table className="table">
-                    <thead className="thead-light">
+                    <thead className="thead-custom">
                         <tr>
                             <th>Event Name</th>
                             <th>Description</th>
