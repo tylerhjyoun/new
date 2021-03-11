@@ -68,14 +68,7 @@ export default class MyEvents extends Component {
     render() {
         return (
             <div className="background">
-
-                <button onClick={() => {
-                    auth.logout(() => {
-                        console.log(this.props.history)
-                        this.props.history.push("/")
-                    })
-                }}> Logout </button>
-                <h2> Welcome back, Username!</h2>
+                <h2> Welcome back, {this.state.user.username}!</h2>
                 <div class="profile">
                     <img className="avatar" src="https://image.flaticon.com/icons/png/512/147/147144.png"
                         alt="Profile Picture" width="150" height="150"
