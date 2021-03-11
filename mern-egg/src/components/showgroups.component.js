@@ -73,7 +73,7 @@ export default class ShowGroups extends Component {
         return (
             <div>
                <h2> Logged Groups </h2>
- 
+               <Link to='/home/group'> Add Group </Link>
             <table>
             <thead>
                 <tr>
