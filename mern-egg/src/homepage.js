@@ -15,6 +15,8 @@ import CreateEvent from "./components/createevent.component"
 import AddFollowing from "./components/addfollowing.component"
 import ShowFollowing from "./components/showfollowing.component"
 import ShowUser from "./components/showuser.component"
+import EditUser from "./components/edituser.component"
+
 export const homepage = () => {
    return (
       <div className="container">
@@ -29,6 +31,8 @@ export const homepage = () => {
             <Route path="/home/user/friends/addFollowing" exact component={AddFollowing} />
             <Route path="/home/user/friends/showfollowing" exact component={ShowFollowing} />
             <Route path="/home/users/:id" component={ShowUser} />
+            <Route path="/home/user/edit" component={EditUser} />
+
       </div>
    );
 }
