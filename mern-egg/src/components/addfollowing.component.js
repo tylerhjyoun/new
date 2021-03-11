@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios'
 import Select from 'react-select'
 import auth from './auth'
@@ -12,7 +12,7 @@ const User = props => (
         alt = "ListIcon" width="40" height="40"
         ></img>
         {props.user.name}</td>
-        <td>{props.user.username}</td>
+        <td><Link to={'/home/users/'+props.user._id}>{props.user.username}</Link></td>
         <td>
             <button className = "Follow" href="#" onClick={() => {
                 props.addFollowing(props.user._id)

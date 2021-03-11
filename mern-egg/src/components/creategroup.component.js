@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Select from 'react-select'
 import auth from './auth'
-import '../Login.css';
 
 export default class CreateGroup extends Component {
     constructor(props) {
@@ -17,21 +16,34 @@ export default class CreateGroup extends Component {
             groupName: '',
             groupMembers: [],
             groupCount: 0,
-            users: []
+            users: [],
+            id: '',
+            currentUser: []
         }
     }
 
-    async componentDidMount() {
-        axios.get(`http://localhost:5000/users`)
-            .then(res => {
-
-                this.setState({
-                    users: res.data.map(user => user.username)
-                })
+    componentDidMount() {
+        const token = { token: localStorage.getItem('data') } // determine user that is logged in and set state to its id
+        axios.post(`http://localhost:5000/login/token`, token)
+            .then((res) => {
+                this.setState({ id: res.data.id.id })
+                axios.get(`http://localhost:5000/users`)
+                    .then(res => {
+                        this.setState({
+                            users: res.data.map(user => ({id: user._id, username: user.username})).filter(el => el.id !== this.state.id),
+                            currentUser: res.data.filter(el => el._id === this.state.id).map(user => ({id: user._id, username: user.username}))
+                        })
+                        console.log(this.state.currentUser)
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
             })
             .catch((error) => {
                 console.log(error);
             })
+
+
 
     }
 
@@ -53,13 +65,13 @@ export default class CreateGroup extends Component {
 
     onSubmit(e) {
         e.preventDefault();
+       
         const group = {
             groupName: this.state.groupName,
-            groupMembers: this.state.groupMembers.map(function (item) {
-                return item['label']
-            }),
+            groupMembers: this.state.groupMembers.map(user => ({id: user.value, username: user.label})).concat(this.state.currentUser),
             groupCount: this.state.groupMembers.length
         }
+        console.log(group.groupMembers)
         this.setState({
             groupName: '',
             groupMembers: [],
@@ -75,18 +87,16 @@ export default class CreateGroup extends Component {
             .catch((error) => {
                 console.log(error);
             })
+            
     }
 
 
     render() {
         const userList = [];
         this.state.users.forEach(function (element) {
-            userList.push({ label: element, value: element })
+            userList.push({ label: element.username, value: element.id })
         })
 
-        const users = this.state.users.map(user => {
-            return <li key={user.username}> {user.username} </li>
-        })
         return (
             <div className="bg-light">
                 <div class="title">Add Group</div>
