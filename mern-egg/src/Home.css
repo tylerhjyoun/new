@@ -1,52 +1,20 @@
 body {
-    background-color: white;
+    background: linear-gradient(180deg, rgb(179, 16, 130), rgb(162, 172, 20));
     background-attachment: fixed;
-    padding-top: 60px;
-}
-
-div.profile {
-    background-color: white;
-    margin-bottom: 15px;
-}
-
-.avatar {
-    border-radius: 50%;
-    float: left;
-    margin-bottom: 20px;
 }
 
 .background {
+    margin-top: 0px;
     background-color: white;
-}
-
-h3 {
-    margin-left: 17px;
-    margin-bottom: 10px;
-}
-
-p {
-    position: relative; 
-	left: 20px;
-}
-
-.edit {
-    position: relative;
-    left: 37px;
+    margin-bottom: 300px;
 }
 
 h2 {
-    font-size: 40px;
+    color:rgb(175, 141, 29);
+    font-size: 60px;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
     font-weight: bold;
-    margin-top: 10px;
 }
-.table {
-    margin-top: 20px;   
+table {
+    background-color: white;   
 }
-
-.thead-custom {
-    background-color: rgb(15, 15, 80);
-    color: white;
-}
-
-
