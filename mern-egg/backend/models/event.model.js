@@ -6,7 +6,7 @@ const eventSchema = new Schema({
     description: { type: String, required: true },
     starttime: { type: String, required: true },
     endtime: { type: String, required: true },
-
+    user: {type: Array, required:true}
         }, {
     timestamps: true,
   });
