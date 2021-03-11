@@ -44,30 +44,33 @@ function Login(props) {
 
 
     return (
-        <div className = "submitForm">
-            <div class = "title">
-                EGGTIMER
+        <div className = "bg">
+            <div className = "submitForm">
+                <div class = "title">
+                    EGGTIMER
+                </div>
+                <div class = "desc">
+                    Welcome to Egg Timer!
+                </div>
+                <form onSubmit={onSubmit}>
+                    <input type="text"
+                        placeholder="Username..."
+                        required
+                        value={username}
+                        onChange={onChangeUsername}
+                    />
+                    <input type="password"
+                        placeholder="Password..."
+                        required
+                        value={password}
+                        onChange={onChangePassword}
+                    />
+                    <input type="submit" value="LOGIN"/>
+                </form>
+                <Link to="/user" className="nav-link"> Don't have an account? </Link>
             </div>
-            <div class = "desc">
-                Welcome to Eggtimer!
-            </div>
-            <form onSubmit={onSubmit}>
-                <input type="text"
-                    placeholder="Username..."
-                    required
-                    value={username}
-                    onChange={onChangeUsername}
-                />
-                <input type="password"
-                    placeholder="Password..."
-                    required
-                    value={password}
-                    onChange={onChangePassword}
-                />
-                <input type="submit" value="LOGIN"/>
-            </form>
-            <Link to="/user" className="nav-link"> Don't have an account? </Link>
         </div>
+
     )
 }
 
