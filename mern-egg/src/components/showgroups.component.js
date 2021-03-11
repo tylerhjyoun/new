@@ -30,7 +30,6 @@ export default class ShowGroups extends Component {
     deleteGroup(id){
         axios.delete('http://localhost:5000/groups/'+id)
             .then(response => { console.log(response.data)});
-  
         this.setState({
             groups: this.state.groups.filter(el => el._id !== id)
       })    
@@ -46,7 +45,7 @@ export default class ShowGroups extends Component {
                 for (var i = 0; i < groupsData.length; i++) { 
                     var curr = groupsData[i]
                     /* bro */
-                    const usertoken = { usertoken: sessionStorage.getItem('data') }
+                    const usertoken = { usertoken: localStorage.getItem('data') }
                     if (curr["groupMembers"] === usertoken) { 
                         final.push(curr)
                     } 
