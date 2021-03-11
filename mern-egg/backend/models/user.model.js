@@ -7,7 +7,8 @@ const userSchema = new Schema({
     username: { type: String, required: true },
     password: { type: String, required: true},
     followers: {type: Array},
-    following: {type: Array}
+    following: {type: Array},
+    profilepicture: {type: Number}
 }, {
     timestamps: true,
   });

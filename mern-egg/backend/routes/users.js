@@ -35,8 +35,9 @@ router.post('/', (req, res) => {
   const password = req.body.password;
   const followers = req.body.followers;
   const following = req.body.following
+  const profilepicture = req.body.profilepicture
 
-  const newUser = new User({ name, username, password, followers, following });
+  const newUser = new User({ name, username, password, followers, following, profilepicture });
   console.log(newUser)
   newUser.save()
     .then(() => res.json('User added'))
