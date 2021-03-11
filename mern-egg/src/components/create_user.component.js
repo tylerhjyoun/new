@@ -62,36 +62,39 @@ export default class CreateUser extends Component {
     }
     render(){
         return (
-            <div className = "createUser">
-                <div class = "signUp">
-                    Sign Up
-                </div>
-                <form onSubmit={this.onSubmit}>
-                <input type="text"
-                    placeholder="Name..."
-                    required
-                    value={this.state.name}
-                    onChange={this.onChangeName}
-                />
-                <input type="text"
-                    placeholder="Username..."
-                    required
-                    value={this.state.username}
-                    onChange={this.onChangeUsername}
-                />
-                <input type="password"
-                    placeholder="Password..."
-                    required
-                    value={this.state.password}
-                    onChange={this.onChangePassword}
-                />
-                <input type="password"
-                    placeholder="Re-enter Password..."
-                    required
-                />
-                <input type="submit" value="Create User"/>
-                </form>
-            </div>    
+            <div className = "bg">
+                <div className = "createUser">
+                    <div class = "signUp">
+                        Sign Up
+                    </div>
+                    <form onSubmit={this.onSubmit}>
+                    <input type="text"
+                        placeholder="Name..."
+                        required
+                        value={this.state.name}
+                        onChange={this.onChangeName}
+                    />
+                    <input type="text"
+                        placeholder="Username..."
+                        required
+                        value={this.state.username}
+                        onChange={this.onChangeUsername}
+                    />
+                    <input type="password"
+                        placeholder="Password..."
+                        required
+                        value={this.state.password}
+                        onChange={this.onChangePassword}
+                    />
+                    <input type="password"
+                        placeholder="Re-enter Password..."
+                        required
+                    />
+                    <input type="submit" value="Create User"/>
+                    </form>
+                </div>   
+            </div>
+ 
         )
     }
 }
