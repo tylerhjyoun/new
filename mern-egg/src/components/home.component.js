@@ -22,16 +22,24 @@ export default class MyEvents extends Component {
             id: ''
         }
     }
-
     componentDidMount() {
-        axios.get(`http://localhost:5000/events`)
-            .then(res => {
-                this.setState({ events: res.data });
+        const token = { token: localStorage.getItem('data') } // determine user that is logged in and set state to its id
+        axios.post(`http://localhost:5000/login/token`, token)
+            .then((res) => {
+                this.setState({ id: res.data.id.id })
+                axios.get(`http://localhost:5000/events/find/` + this.state.id)
+                    .then(response => {
+                        this.setState({
+                            events: response.data,
+                        })
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
             })
             .catch((error) => {
                 console.log(error);
-            })
-
+                        })
     }
 
     eventList() {
@@ -56,9 +64,9 @@ export default class MyEvents extends Component {
                         this.props.history.push("/")
                     })
                 }}> Logout </button>
-                <div>JWT: {sessionStorage.getItem('data')}</div>
+                <div>JWT: {localStorage.getItem('data')}</div>
                 <button onClick={() => {
-                    const token = { token: sessionStorage.getItem('data') }
+                    const token = { token: localStorage.getItem('data') }
                     axios.post(`http://localhost:5000/login/token`, token)
                         .then((res) => {
                             console.log(res.data.id.id)
