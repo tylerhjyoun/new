@@ -8,7 +8,7 @@ const Event = props => (
     <tr>
         <td>{props.event.eventname}</td>
         <td>{props.event.description}</td>
-        <td>{moment(props.event.starttime).format("ddd, MMM DD HH:mm a")} until {moment(props.event.endtime).format("ddd, MMM DD HH:mm a")}</td>
+        <td><b>{moment(props.event.starttime).format("ddd, MMM DD HH:mm a")}</b> until <b>{moment(props.event.endtime).format("ddd, MMM DD HH:mm a")}</b></td>
         <td>
             <a href="#" onClick={() => { props.deleteEvent(props.event._id) }}>delete event</a>
         </td>

@@ -7,10 +7,18 @@ import auth from './auth'
 const User = props => (
     <tr>
         <td>{props.user.name}</td>
-        <td>{props.user.username}</td>
-        
+        <td><Link to={'/home/users/'+props.user._id}>{props.user.username}</Link></td>
         <td>
             <a href="#" onClick={() => { props.unFollow(props.user._id) }}>un-follow</a>
+        </td>
+    </tr>
+);
+
+const Fuser = props => (
+    <tr>
+        <td>{props.user.name}</td>
+        <td><Link to={'/home/users/'+props.user._id}>{props.user.username}</Link></td>
+        <td>
         </td>
     </tr>
 );
@@ -19,10 +27,12 @@ export default class ShowFollowing extends Component {
     constructor(props) {
         super(props)
         this.unFollow = this.unFollow.bind(this)
+        this.addFollowing = this.addFollowing.bind(this)
 
         this.state = {
             id: '',
             following: [],
+            followers: [],
             users: [],
             follower_count: 0,
             following_count: 0
@@ -40,6 +50,7 @@ export default class ShowFollowing extends Component {
                         console.log(response.data)
                         this.setState({
                             following: response.data.following,
+                            followers: response.data.followers,
                             following_count: response.data.following.length,
                             follower_count: response.data.followers.length
                         })
@@ -48,10 +59,9 @@ export default class ShowFollowing extends Component {
                         axios.get(`http://localhost:5000/users`, { headers: { "Authorization": `Bearer ${usertoken}` } }) // get all users
                             .then(res => {
                                 this.setState({
-                                    users: res.data.filter((el) => this.state.following.includes(el._id))
+                                    users: res.data.filter((el) => this.state.following.includes(el._id)),
+                                    followers: res.data.filter((el) => this.state.followers.includes(el._id))
                                 });
-                                console.log(this.state.following)
-                                console.log(this.state.users)
                             })
                             .catch((error) => {
                                 console.log(error);
@@ -75,6 +85,11 @@ export default class ShowFollowing extends Component {
             return <User user={currentuser} unFollow={this.unFollow} key={currentuser._id} />
         })
     }
+    followersList() {
+        return this.state.followers.map(currentuser => { // filteredUsers is an array of objects
+            return <Fuser user={currentuser} addFollowing={this.addFollowing} key={currentuser._id} />
+        })
+    }
 
     unFollow(id) {
         axios.post('http://localhost:5000/users/unfollow/' + this.state.id, { id })
@@ -88,12 +103,21 @@ export default class ShowFollowing extends Component {
         console.log(this.state.following_count)
     }
 
+    addFollowing(id) {
+        axios.post('http://localhost:5000/users/addfollowing/' + this.state.id, { id })
+            .then(response => { console.log(response.data) });
+        axios.post('http://localhost:5000/users/addfollower/' + id, { id: this.state.id })
+            .then(response => { console.log(response.data) });
+
+        this.setState({
+            users: this.state.users.filter(el => el._id !== id),
+        })
+    }
+
     render() {
         return (
             <div>
                 <h2>Following: {this.state.following_count} </h2>
-                <h2>Followers: {this.state.follower_count} </h2>
-
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
@@ -103,6 +127,18 @@ export default class ShowFollowing extends Component {
                     </thead>
                     <tbody>
                         {this.userList()}
+                    </tbody>
+                </table>
+                <h2>Followers: {this.state.follower_count} </h2>
+                <table className="table">
+                    <thead className="thead-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.followersList()}
                     </tbody>
                 </table>
             </div >
