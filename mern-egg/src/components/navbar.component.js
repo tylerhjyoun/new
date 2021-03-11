@@ -5,8 +5,42 @@ import auth from "./auth"
 import axios from 'axios'
 import Timer from "./timer.component";
 import { withRouter } from 'react-router-dom'
+import egg_pic from "../profilepictures/egg_pic.png"
+import man_pic from "../profilepictures/man_pic.png"
+import beard_pic from "../profilepictures/beard_pic.png"
 
 class Navbar extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            profilepicture: 0,
+            id: ''
+        }
+    }
+
+    componentDidMount() {
+        const token = { token: localStorage.getItem('data') } // determine user that is logged in and set state to its id
+        axios.post(`http://localhost:5000/login/token`, token)
+            .then((res) => {
+                this.setState({ id: res.data.id.id })
+                console.log(this.state.id)
+                axios.get(`http://localhost:5000/users/` + this.state.id)
+                    .then(res => {
+                        this.setState({
+                            profilepicture: res.data.profilepicture
+                        })
+                        console.log(res.data)
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
+
     render() {
         return (
             <nav className="navbar navbar-custom navbar-expand-lg fixed-top">
@@ -33,6 +67,7 @@ class Navbar extends Component {
                                 <Link to="/home/user/friends/showfollowing" className="nav-link"> Friends </Link>
                             </li>
                         </ul>
+                        
                         <ul class="nav navbar-nav navbar-right">
                             <button className = "logout" onClick={() => {
                                 auth.logout(() => {
@@ -40,7 +75,7 @@ class Navbar extends Component {
                                 this.props.history.push("/")
                                 })
                             }}> Logout </button>
-                            <img className = "icon" src = "https://image.flaticon.com/icons/png/512/147/147144.png"
+                            <img className = "icon" src = {(this.state.profilepicture === 1 ? egg_pic : this.state.profilepicture === 2 ? man_pic : this.state.profilepicture === 3 ? beard_pic : null)}
                                 alt = "Icon" width="50" height="50"
                             ></img>
                         </ul>

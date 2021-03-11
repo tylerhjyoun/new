@@ -4,17 +4,21 @@ import axios from 'axios'
 import Select from 'react-select'
 import auth from './auth'
 import '../Users.css';
+import egg_pic from "../profilepictures/egg_pic.png"
+import man_pic from "../profilepictures/man_pic.png"
+import beard_pic from "../profilepictures/beard_pic.png"
 
 const User = props => (
     <tr>
         <td>
-        <img className = "ListIcon" src = "https://image.flaticon.com/icons/png/512/147/147144.png"
-        alt = "ListIcon" width="40" height="40"
-        ></img>
-        {props.user.name}</td>
-        <td><Link to={'/home/users/'+props.user._id}>{props.user.username}</Link></td>
+            <img className="ListIcon" src={(props.user.profilepicture === 1 ? egg_pic : props.user.profilepicture === 2 ? man_pic : props.user.profilepicture === 3 ? beard_pic : null)}
+                alt="Icon" width="40" height="40"
+            >
+            </img>
+            {props.user.name}</td>
+        <td><Link to={'/home/users/' + props.user._id}>{props.user.username}</Link></td>
         <td>
-            <button className = "Follow" href="#" onClick={() => {
+            <button className="Follow" href="#" onClick={() => {
                 props.addFollowing(props.user._id)
             }
             }>Follow</button>
@@ -32,6 +36,7 @@ export default class AddFollowing extends Component {
             id: '',
             following: [],
             users: [],
+            profilepicture: 0
         }
     }
 
@@ -107,7 +112,7 @@ export default class AddFollowing extends Component {
         return (
             <div>
                 <h2>Search Users </h2>
-                <input class="form-control" id="myInput" type="text" placeholder="Search.."/>
+                <input class="form-control" id="myInput" type="text" placeholder="Search.." />
                 <table className="table">
                     <thead className="thead-custom">
                         <tr>
@@ -120,9 +125,9 @@ export default class AddFollowing extends Component {
                     </tbody>
                 </table>
             </div >
-            
+
         );
-        
+
     }
 }
 // export default class AddFriend extends Component {
