@@ -28,6 +28,15 @@ export default class MyEvents extends Component {
         axios.post(`http://localhost:5000/login/token`, token)
             .then((res) => {
                 this.setState({ id: res.data.id.id })
+                axios.get(`http://localhost:5000/users/` + this.state.id)
+                    .then(response => {
+                        this.setState({
+                            user: response.data
+                        })
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
                 axios.get(`http://localhost:5000/events/find/` + this.state.id)
                     .then(response => {
                         this.setState({
@@ -40,7 +49,7 @@ export default class MyEvents extends Component {
             })
             .catch((error) => {
                 console.log(error);
-                        })
+            })
     }
 
     eventList() {
