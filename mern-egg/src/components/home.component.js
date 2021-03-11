@@ -4,6 +4,10 @@ import axios from 'axios'
 import Timer from "./timer.component";
 import '../Home.css';
 import auth from "./auth"
+import egg_pic from "../profilepictures/egg_pic.png"
+import man_pic from "../profilepictures/man_pic.png"
+import beard_pic from "../profilepictures/beard_pic.png"
+
 
 const Event = props => (
     <tr>
@@ -20,7 +24,8 @@ export default class MyEvents extends Component {
         this.state = {
             events: [],
             id: '',
-            user: []
+            user: [],
+            profilepicture: 0
         }
     }
     componentDidMount() {
@@ -31,7 +36,8 @@ export default class MyEvents extends Component {
                 axios.get(`http://localhost:5000/users/` + this.state.id)
                     .then(response => {
                         this.setState({
-                            user: response.data
+                            user: response.data,
+                            profilepicture: response.data.profilepicture
                         })
                     })
                     .catch((error) => {
@@ -70,9 +76,9 @@ export default class MyEvents extends Component {
             <div className="background">
                 <h2> Welcome back, {this.state.user.username}!</h2>
                 <div class="profile">
-                    <img className="avatar" src="https://image.flaticon.com/icons/png/512/147/147144.png"
-                        alt="Profile Picture" width="150" height="150"
-                    ></img>
+                    <img className = "avatar" src = {(this.state.profilepicture === 1 ? egg_pic : this.state.profilepicture === 2 ? man_pic : this.state.profilepicture === 3 ? beard_pic : null)}
+                                alt = "Icon" width="150" height="150"
+                            ></img>
                     <div>
                         <h3> My Profile: </h3>
                         <p>
@@ -80,7 +86,7 @@ export default class MyEvents extends Component {
                         Username: {this.state.user.username} <br />
                         Password: ****** <br /><br /><br />
                         </p>
-                        <Link to="/home" className="edit"> Edit Profile </Link>
+                        <Link to="/home/user/edit" className="edit"> Edit Profile </Link>
                     </div>
                 </div>
                 <h3> My Events: </h3>

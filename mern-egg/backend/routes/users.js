@@ -11,6 +11,17 @@ router.get('/', (req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.post('/update/:id', (req, res) => {
+  User.findById(req.params.id)
+    .then(user => {
+      user.username = req.body.username
+      user.password = req.body.password
+      user.save()
+        .then(() => res.json('User Updated'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
 
 router.delete('/:id', (req, res) => {
   User.findByIdAndDelete()
@@ -24,8 +35,9 @@ router.post('/', (req, res) => {
   const password = req.body.password;
   const followers = req.body.followers;
   const following = req.body.following
-  
-  const newUser = new User({ name, username, password, followers, following });
+  const profilepicture = req.body.profilepicture
+
+  const newUser = new User({ name, username, password, followers, following, profilepicture });
   console.log(newUser)
   newUser.save()
     .then(() => res.json('User added'))
@@ -61,7 +73,7 @@ router.post('/unfollow/:id', (req, res) => {
 router.post('/removefollower/:id', (req, res) => {
   console.log(req.body)
 
-  User.findByIdAndUpdate(req.params.id, { $pull: { followers : req.body.id } })
+  User.findByIdAndUpdate(req.params.id, { $pull: { followers: req.body.id } })
     .then(res.json('Follower Removed'))
     .catch(err => res.status(400).json('Error: ' + err));
 })

@@ -7,17 +7,12 @@ import '../Followers.css';
 
 const User = props => (
     <tr>
-
-        <td>{props.user.name}</td>
-        <td><Link to={'/home/users/'+props.user._id}>{props.user.username}</Link></td>
-
         <td>
         <img className = "ListIcon" src = "https://image.flaticon.com/icons/png/512/147/147144.png"
         alt = "ListIcon" width="40" height="40"
         ></img>
         {props.user.name}</td>
         <td><Link to={'/home/users/'+props.user._id}>{props.user.username}</Link></td>
-
         <td>
             <button className = "Unfollow"
             href="#" onClick={() => { props.unFollow(props.user._id) }}>Unfollow</button>
