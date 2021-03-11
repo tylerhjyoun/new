@@ -4,8 +4,9 @@ import '../NavBar.css';
 import auth from "./auth"
 import axios from 'axios'
 import Timer from "./timer.component";
+import { withRouter } from 'react-router-dom'
 
-export default class Navbar extends Component {
+class Navbar extends Component {
     render() {
         return (
             <nav className="navbar navbar-custom navbar-expand-lg fixed-top">
@@ -33,7 +34,6 @@ export default class Navbar extends Component {
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-
                             <button className = "logout" onClick={() => {
                                 auth.logout(() => {
                                 console.log(this.props.history)
@@ -51,3 +51,5 @@ export default class Navbar extends Component {
         );
     }
 }
+
+export default withRouter(Navbar)
