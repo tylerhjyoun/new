@@ -65,7 +65,7 @@ function Login(props) {
                         value={password}
                         onChange={onChangePassword}
                     />
-                    <input type="submit" value="LOGIN"/>
+                    <input className = "login" type="submit" value="LOGIN"/>
                 </form>
                 <Link to="/user" className="nav-link"> Don't have an account? </Link>
             </div>

@@ -109,7 +109,10 @@ export default class MyEvents extends Component {
         return (
             <div>
                <h2>Events </h2> 
-               <Link to='/home/event'> Add Event </Link><br/>
+               <form action="/home/event">
+                    <input className = "AddEvent" type="submit" value="Add Event" />
+                </form>
+               <Link to='/home/event'> Add Event </Link><br/><br/>
             <h3> Upcoming Events: </h3>
             <table className="table">
             <thead className="thead-custom">
