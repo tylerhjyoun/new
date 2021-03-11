@@ -99,36 +99,7 @@ export default class CreateUser extends Component {
                             value={this.state.password}
                             onChange={this.onChangePassword}
                         />
-                        <input type="password"
-                            placeholder="Re-enter Password..."
-                            required
-                        />
-                        <div>
-                        <b> {this.state.profilepicture} </b>
-                            <b> Choose Profile Picture </b>
-                            <select required onChange={this.onChangeProfilePicture}
-                            >
-                                <option value= "1"> 1 </option>
-                                <option value= "2"> 2 </option>
-                                <option value= "3"> 3 </option>
 
-                            </select>
-                            <div> <b>1</b>
-                                <img className="ListIcon" src={egg_pic}
-                                    alt="ListIcon" width="40" height="40">
-                                </img>
-                            </div>
-                            <div> <b>2</b>
-                                <img className="ListIcon" src={man_pic}
-                                    alt="ListIcon" width="40" height="40">
-                                </img>
-                            </div>
-                            <div> <b>3</b>
-                                <img className="ListIcon" src={beard_pic}
-                                    alt="ListIcon" width="40" height="40">
-                                </img>
-                            </div>
-                        </div>
                         <input type="submit" value="Create User" />
                     </form>
                 </div>

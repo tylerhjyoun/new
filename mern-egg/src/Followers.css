@@ -1,7 +1,7 @@
 
 .FollowData {
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 h3 {
@@ -15,9 +15,15 @@ h4 {
     padding-left: 20px;
 }
 
+h5 {
+    padding-left: 20px;
+}
+
 .thead-custom {
     background-color: rgb(15, 15, 80);
     color: white;
+    width: 200px;
+    table-layout: fixed;
 }
 
 .Unfollow {

@@ -5,6 +5,7 @@ import auth from './auth'
 import egg_pic from "../profilepictures/egg_pic.png"
 import man_pic from "../profilepictures/man_pic.png"
 import beard_pic from "../profilepictures/beard_pic.png"
+import '../EditUser.css';
 
 
 export default class EditUser extends Component {
@@ -103,20 +104,23 @@ export default class EditUser extends Component {
     render() {
         return (
             <div className="bg-light">
-                <Link to="/home/" className="edit"> Back to home </Link>
+                
 
                 <h2>Edit User</h2>
                 <form onSubmit={this.onSubmit}>
                     <b>Current Username: {this.state.user.username}</b>
                     <div>
+                        <br/>
                         <label>New Username: </label>
                         <input type="text" required value={this.state.username} onChange={this.onChangeUsername} />
                     </div>
                     <div>
-                        <label>New Password: </label>
+                        <label>New Password: </label><br/>
                         <input type="text" required value={this.state.password} onChange={this.onChangePassword} />
                     </div>
                     <div>
+                    <input class="img_beard" type="submit" value=""/>
+
                         <b> {this.state.profilepicture} </b>
                             <b> Change Profile Picture </b>
                             <select required onChange={this.onChangeProfilePicture}
@@ -145,6 +149,7 @@ export default class EditUser extends Component {
                     <input type="submit" value="Save Changes" />
 
                 </form>
+                <Link to="/home/" className="edit"> Back to home </Link>
             </div>
         )
     }
