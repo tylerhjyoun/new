@@ -1,0 +1,31 @@
+.navbar-custom { 
+    background-color: rgb(15, 15, 80);
+}
+.navbar-custom .navbar-brand, 
+.navbar-custom .navbar-text { 
+    color: rgb(255, 255, 255); 
+} 
+
+.logout {
+    background-color: #231380;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.icon {
+    margin-left: 20px;
+    border-radius: 50%;
+}
+
+.egg {
+    margin-right: 10px;
+}
+
+nav .navbar-nav li a{
+    color: white !important;
+}
