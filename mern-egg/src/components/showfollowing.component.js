@@ -125,28 +125,31 @@ export default class ShowFollowing extends Component {
            
             
             <div >
+                <h2>Friends</h2>
                 <div className = "FollowData">
                     <h3>Following: {this.state.following_count} </h3>
                     <h4>Followers: {this.state.follower_count} </h4>
                 </div>
-                <input class="form-control" id="myInput" type="text" placeholder="Search.."/>
+                <h5>Following:</h5>
                 <table className="table">
                     <thead className="thead-custom">
                         <tr>
                             <th>Name</th>
                             <th>Username</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.userList()}
                     </tbody>
                 </table>
-                <h2>Followers: {this.state.follower_count} </h2>
+                <h5>Followers:</h5>
                 <table className="table">
-                    <thead className="thead-light">
+                    <thead className="thead-custom">
                         <tr>
                             <th>Name</th>
                             <th>Username</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

@@ -108,9 +108,9 @@ export default class MyEvents extends Component {
     render() {
         return (
             <div>
-               <h2>Upcoming Events </h2> 
-               <Link to='/home/event'> Add Event </Link>
-            <input class="form-control" id="myInput" type="text" placeholder="Search.."/>
+               <h2>Events </h2> 
+               <Link to='/home/event'> Add Event </Link><br/>
+            <h3> Upcoming Events: </h3>
             <table className="table">
             <thead className="thead-custom">
                 <tr>
@@ -123,9 +123,9 @@ export default class MyEvents extends Component {
                 { this.eventList() }
                 </tbody>
             </table>
-            old events
+            <h3> Past Events: </h3>
             <table className="table">
-            <thead className="thead-light">
+            <thead className="thead-custom">
                 <tr>
                     <th>Event Name</th>
                     <th>Description</th>

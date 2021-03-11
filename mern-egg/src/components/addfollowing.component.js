@@ -112,12 +112,13 @@ export default class AddFollowing extends Component {
         return (
             <div>
                 <h2>Search Users </h2>
-                <input class="form-control" id="myInput" type="text" placeholder="Search.." />
+                <h6> Follow another User! </h6>
                 <table className="table">
                     <thead className="thead-custom">
                         <tr>
                             <th>Name</th>
                             <th>Username</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
