@@ -8,13 +8,20 @@ router.route('/').get((req, res) => {
       .catch(err => res.status(400).json('Error: ' + err));
   });
 
+  router.route('/find/:id').get((req, res) => {
+    Event.find({"user.id": req.params.id})
+      .then(events => res.json(events))
+      .catch(err => res.status(400).json('Error: ' + err));
+  });
+
 router.route('/add').post((req, res) => {
+    console.log(req.body)
     const eventname = req.body.eventname;
     const description= req.body.description;
     const starttime = req.body.starttime;
     const endtime = req.body.endtime;
-
-    const newEvent = new Event({eventname, description, starttime, endtime});
+    const user = req.body.user
+    const newEvent = new Event({eventname, description, starttime, endtime, user});
 
     newEvent.save()
         .then(() => res.json('Event added'))
