@@ -3,13 +3,24 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Select from 'react-select'
 import auth from './auth'
+import '../Followers.css';
 
 const User = props => (
     <tr>
+
         <td>{props.user.name}</td>
         <td><Link to={'/home/users/'+props.user._id}>{props.user.username}</Link></td>
+
         <td>
-            <a href="#" onClick={() => { props.unFollow(props.user._id) }}>un-follow</a>
+        <img className = "ListIcon" src = "https://image.flaticon.com/icons/png/512/147/147144.png"
+        alt = "ListIcon" width="40" height="40"
+        ></img>
+        {props.user.name}</td>
+        <td><Link to={'/home/users/'+props.user._id}>{props.user.username}</Link></td>
+
+        <td>
+            <button className = "Unfollow"
+            href="#" onClick={() => { props.unFollow(props.user._id) }}>Unfollow</button>
         </td>
     </tr>
 );
@@ -116,10 +127,16 @@ export default class ShowFollowing extends Component {
 
     render() {
         return (
-            <div>
-                <h2>Following: {this.state.following_count} </h2>
+           
+            
+            <div >
+                <div className = "FollowData">
+                    <h3>Following: {this.state.following_count} </h3>
+                    <h4>Followers: {this.state.follower_count} </h4>
+                </div>
+                <input class="form-control" id="myInput" type="text" placeholder="Search.."/>
                 <table className="table">
-                    <thead className="thead-light">
+                    <thead className="thead-custom">
                         <tr>
                             <th>Name</th>
                             <th>Username</th>
