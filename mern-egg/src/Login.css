@@ -50,7 +50,7 @@ input[type=password] {
     background-color: rgb(223, 223, 223);
 }
 
-input[type=submit] {
+.login {
     background-color: #231380;
     border: none;
     color: white;
