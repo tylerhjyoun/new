@@ -7,6 +7,7 @@ import auth from "./auth"
 import egg_pic from "../profilepictures/egg_pic.png"
 import man_pic from "../profilepictures/man_pic.png"
 import beard_pic from "../profilepictures/beard_pic.png"
+import woman_pic from "../profilepictures/woman_pic.png"
 
 
 const Event = props => (
@@ -25,6 +26,8 @@ export default class MyEvents extends Component {
             events: [],
             id: '',
             user: [],
+            followers: 0,
+            following: 0,
             profilepicture: 0
         }
     }
@@ -37,6 +40,8 @@ export default class MyEvents extends Component {
                     .then(response => {
                         this.setState({
                             user: response.data,
+                            followers: response.data.followers.length,
+                            following: response.data.following.length,
                             profilepicture: response.data.profilepicture
                         })
                     })
@@ -76,20 +81,22 @@ export default class MyEvents extends Component {
             <div className="background">
                 <h2> Welcome back, {this.state.user.username}!</h2>
                 <div class="profile">
-                    <img className = "avatar" src = {(this.state.profilepicture === 1 ? egg_pic : this.state.profilepicture === 2 ? man_pic : this.state.profilepicture === 3 ? beard_pic : null)}
+                    <img className = "avatar" src = {(this.state.profilepicture === 1 ? man_pic : this.state.profilepicture === 2 ? beard_pic : this.state.profilepicture === 3 ? woman_pic : null)}
                                 alt = "Icon" width="150" height="150"
-                            ></img>
+                    ></img>
                     <div>
                         <h3> My Profile: </h3>
                         <p>
                             Name: {this.state.user.name} <br />
                         Username: {this.state.user.username} <br />
-                        Password: ****** <br /><br /><br />
-                        </p>
                         <Link to="/home/user/edit" className="edit"> Edit Profile </Link>
+                        <br /><br /><br />
+                        </p>
+                        
                     </div>
                 </div>
-                <h3> My Events: </h3>
+                <h3>Followers: {this.state.followers}</h3>
+                <h4>Following: {this.state.following}</h4><br/>
                 <table className="table">
                     <thead className="thead-custom">
                         <tr>
