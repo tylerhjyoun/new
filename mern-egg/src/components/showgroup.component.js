@@ -60,13 +60,12 @@ export default class showGroup extends Component {
                         var final = []
                         for (var i = 0; i < res.data.length; i++) { 
                             var curr = eventsData[i]
-                            console.log(curr.user[0].username)
+                            console.log(curr.user[0].id)
                             for (var q = 0; q < this.state.groupmembers.length; q++)
                             {
-                                console.log(this.state.groupmembers[q].username)
-                                if(curr.user[0].username === this.state.groupmembers[q].username){
+                                console.log(this.state.groupmembers[q].id)
+                                if(curr.user[0].id === this.state.groupmembers[q].id){
                                     final.push(curr)
-                                    console.log(final);
                                 }
                             }
                         }
