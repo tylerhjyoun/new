@@ -16,6 +16,7 @@ router.post('/update/:id', (req, res) => {
     .then(user => {
       user.username = req.body.username
       user.password = req.body.password
+      user.profilepicture = req.body.profilepicture
       user.save()
         .then(() => res.json('User Updated'))
         .catch(err => res.status(400).json('Error: ' + err));
