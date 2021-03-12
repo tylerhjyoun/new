@@ -40,4 +40,3 @@ export default class Timer extends Component {
         clearInterval(this.myInterval)
     }
 }
-

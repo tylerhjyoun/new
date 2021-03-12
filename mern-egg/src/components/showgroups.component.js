@@ -5,7 +5,11 @@ import Select from 'react-select'
 
 const Group = props => (
     <tr>
-        <td><Link to={'/home/groups/' + props.group._id}>{props.group.groupName}</Link></td>
+        <td>
+        <img className="ListIcon" src="https://cdn1.iconfinder.com/data/icons/business-avatar-vol-2/16/men_avatar_group_people_persons_community-512.png"
+                alt="Icon" width="40" height="40"
+        ></img>
+        <Link to={'/home/groups/' + props.group._id}>{props.group.groupName}</Link></td>
         <td>{props.group.groupCount}</td>
     </tr>
 );

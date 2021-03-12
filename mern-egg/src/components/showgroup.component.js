@@ -106,7 +106,9 @@ export default class showGroup extends Component {
             return aval - bval;
         });
         const filtered = this.state.events.filter(e =>
-            Math.floor((new Date(e.endtime).getTime() + new Date(e.endtime).getDate() - new Date().getTime() - new Date().getDate()) / 1000) >= 0);
+            Math.floor(
+                (((new Date(e.endtime).getTime() + new Date(e.endtime).getDate() - new Date().getTime() - new Date().getDate()) / 1000) >= 0) 
+                && (((new Date().getTime() + new Date().getDate() - new Date(e.starttime).getTime() - new Date(e.starttime).getDate()) / 1000) >= 0)));
         return filtered.map(currentevent => {
             return <Event event={currentevent} deleteEvent={this.deleteEvent} key={currentevent._id} />
         })
@@ -120,6 +122,7 @@ export default class showGroup extends Component {
         }
         console.log(this.state.groupmembers)
         const data = Array.from(this.state.groupmembers);
+
         const listUsers = data.map((d) => 
         <tr key={d.username}>
             
@@ -128,7 +131,7 @@ export default class showGroup extends Component {
             >
             </img><Link to={'/home/users/' + d.id}>{d.username}</Link></td>
         </tr>);
-        
+       
         return (
             <div>
 
@@ -140,7 +143,7 @@ export default class showGroup extends Component {
                 </div>
                 <p>
                 <h6> Welcome to your Group's Profile Page! </h6>
-                On this page, you can directly look at your any <br/>
+                On this page, you can directly look at any <br/>
                 events that your group currently has! <br/><br/>
                 <h6>Group Size: {this.state.group.groupCount}</h6> <br/>
                 </p>
@@ -148,7 +151,9 @@ export default class showGroup extends Component {
                 <table className="table">
                 <thead className="thead-custom">
                     <tr>
-                        <th>     User Name</th>
+
+                        <th>Username</th>
+
                     </tr>
                 </thead>
                 <tbody>
