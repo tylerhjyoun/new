@@ -12,6 +12,7 @@ export default class CreateEvent extends Component {
         this.onChangeEventname = this.onChangeEventname.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangeDate = this.onChangeDate.bind(this);
+        // this.onChangeUser = this.onChangeUser.bind(this);
 
 
         this.state = {
@@ -19,7 +20,8 @@ export default class CreateEvent extends Component {
             description: '',
             date: '',
             user: [],
-            id: ''
+            id: '',
+            // groups: []
         }
     }
     onChangeEventname(e) {
@@ -64,6 +66,46 @@ export default class CreateEvent extends Component {
         })
     }
 
+    // onChangeUser(e) {
+    //     const token = { token: localStorage.getItem('data') } // determine user that is logged in and set state to its id
+    //     axios.post(`http://localhost:5000/login/token`, token)
+    //         .then((res) => {
+    //             this.setState({ id: res.data.id.id })
+    //             axios.get(`http://localhost:5000/groups`)
+    //                 .then(response => {
+    //                     const all = response.data; 
+    //                     let usergroups = [];
+    //                     let copy = [];
+    //                     for(let i = 0; i < all.length; i++){
+    //                         const currentgroup = all[i]
+    //                         for(let j = 0; j < currentgroup.groupMembers.length; j++){
+    //                             const currentgroupmembersIds = currentgroup.groupMembers[j]['id']
+    //                             if(currentgroupmembersIds === this.state.id){
+    //                                 copy = usergroups.concat(currentgroup)
+    //                             }
+    //                         }
+    //                     }
+    //                     for(let i = 0; i < copy.length; i++){
+    //                         if(e === copy[i].groupName){
+    //                             this.setState({
+    //                                 groups: copy[i],
+    //                             })
+    //                         }
+    //                     }
+    //                 })
+    //                 .catch((error) => {
+    //                     console.log(error);
+    //                 })
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //                     })
+        
+    //     this.setState({
+    //         user: this.state.groups.groupMembers
+    //     })
+    // }
+
     onSubmit(e) {
         e.preventDefault();
 
@@ -99,18 +141,19 @@ export default class CreateEvent extends Component {
             <div className="bg-light">
                 <h2>Add Event</h2>
                 <form onSubmit={this.onSubmit}>
-                    <label>Event name: </label><br/>
+                    {/* <label>group? </label>
+                    <input type="text"  value={this.state.user} onChange={this.onChangeUser} /> */}
+
+                    <label>Event name: </label>
                     <input type="text" required value={this.state.eventName} onChange={this.onChangeEventname} />
-                    <br/>
-                    <label>Description: </label><br/>
+
+                    <label>Description: </label>
                     <input type="text" required value={this.state.description} onChange={this.onChangeDescription} />
                     <div>
                         <label>Date: </label>
-                        <br/>
                         <DateTimeRangePicker required minDate={new Date()} value={this.state.date} onChange={this.onChangeDate} calendarClassName="react-datetime-picker__wrapper" />
                     </div>
-                    <br/>
-                    <input type="submit" value="Create Event" className = "btn"/>
+                    <input type="submit" value="Create Event" />
                 </form>
             </div>
         )
