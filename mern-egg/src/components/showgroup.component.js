@@ -96,7 +96,11 @@ export default class showGroup extends Component {
 
     render() {
         const data = Array.from(this.state.groupmembers);
-        const listUsers = data.map((d) => <tr key={d.username}><td><Link to={'/home/users/' + d.id}>{d.username}</Link></td></tr>);
+        const listUsers = data.map((d) => <tr key={d.username}><td>
+        <img className = "ListIcon" src = "https://cdn1.iconfinder.com/data/icons/business-avatar-vol-2/16/men_avatar_group_people_persons_community-512.png"
+            alt = "Icon" width="40" height="40"
+        ></img>
+        <Link to={'/home/users/' + d.id}>{d.username}</Link></td></tr>);
         return (
             <div>
 
@@ -108,7 +112,7 @@ export default class showGroup extends Component {
                 </div>
                 <p>
                 <h6> Welcome to your Group's Profile Page! </h6>
-                On this page, you can directly look at your any <br/>
+                On this page, you can directly look at any <br/>
                 events that your group currently has! <br/><br/>
                 <h6>Group Size: {this.state.group.groupCount}</h6> <br/>
                 </p>
@@ -116,7 +120,7 @@ export default class showGroup extends Component {
                 <table className="table">
                 <thead className="thead-custom">
                     <tr>
-                        <th>User Name</th>
+                        <th>Username</th>
                     </tr>
                 </thead>
                 <tbody>
