@@ -126,8 +126,9 @@ export default class ShowGroups extends Component {
     render() {
         return (
             <div>
-               <h2> Logged Groups </h2>
-               <Link to='/home/group'> Add Group </Link>
+
+               <h2> Groups </h2>
+               <Link className = "btn" to='/home/group'> Add Group </Link>
             <table>
             <thead>
                 <tr>
