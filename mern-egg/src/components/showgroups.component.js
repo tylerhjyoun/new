@@ -30,40 +30,56 @@ export default class showGroup extends Component {
 
 
     componentDidMount() { 
-        const token = { token: localStorage.getItem('data') } // determine user that is logged in and set state to its id
-        axios.post(`http://localhost:5000/login/token`, token)
-            .then((res) => {
-            axios.get(`http://localhost:5000/groups`)
-                .then(res => {
-                    console.log(res.data)
-                    const groupsData = res.data
-                    var final = []
-                    for (var i = 0; i < groupsData.length; i++) { 
-                        var curr = groupsData[i]
-                        
-                        const usertoken = { usertoken: localStorage.getItem('data') }
-                        final.push(curr)
-                        if (curr["groupMembers"] === usertoken) { 
-                            console.log(curr["groupMembers"]);
-                            final.push(curr)
-                        } 
-            
-                    }
-
-                    this.setState({
-                        groups: final,
-                    });
-                    
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-
-        })
-        .catch((error) => {
-            console.log(error);
+        axios.get(`http://localhost:5000/groups`)
+            .then(res => {
+                console.log(res.data)
+                let groupsData = res.data
+                this.setState({
+                    groups: res.data,
+                });
+     
+                let final = []; // empty array
+                const token = { token: localStorage.getItem('data') }
+     
+                console.log(token);
+                var userId = '';
+     
+                axios.post(`http://localhost:5000/login/token`, token)
+                    .then((response) => {
+                        console.log(response.data.id.id);
+                        this.setState({
+                            id: response.data.id.id,
+                        });
+     
+                        for (var i = 0; i < groupsData.length; i++) { 
+                            var curr = groupsData[i]
+                            
+                            const arrOfGroupMembers = curr["groupMembers"];
+                            for (var j = 0; j < arrOfGroupMembers.length; j++) {
+                                var temp = arrOfGroupMembers[j]
+                                // console.log(temp)
+                                if (temp["id"] == response.data.id.id) { 
+                                    final.push(curr)
+                                    console.log(curr)
+                                } 
+                            }
+                        }
+     
+                        console.log(final)
+                        this.setState({
+                            groups: final
+                        })
+     
                     })
-}
+                    .catch((error) => {
+                        console.log(error);
+                    })
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+     
+        }
 
     deleteGroup(id){
         axios.delete('http://localhost:5000/groups/'+id)
@@ -90,9 +106,8 @@ export default class showGroup extends Component {
             <table className="table">
             <thead className="thead-custom">
                 <tr>
-                    <th>Group Name</th>
+                    <th>Your Groups</th>
                     <th>Number of Members</th>
-                    {/*<th>delete button</th>*/}
                 </tr>
             </thead>
                 <tbody>
@@ -227,4 +242,41 @@ export default class ShowGroups extends Component {
                 console.log(error);
             })
     }
+
+        componentDidMount() { 
+        const token = { token: localStorage.getItem('data') } // determine user that is logged in and set state to its id
+        axios.post(`http://localhost:5000/login/token`, token)
+            .then((res) => {
+            axios.get(`http://localhost:5000/groups`)
+                .then(res => {
+                    console.log(res.data)
+                    const groupsData = res.data
+                    var final = []
+                    for (var i = 0; i < groupsData.length; i++) { 
+                        var curr = groupsData[i]
+                        
+                        const usertoken = { usertoken: localStorage.getItem('data') }
+                        console.log(curr["groupMembers"][0].id)
+                        final.push(curr)
+                        if (curr["groupMembers"] === usertoken) { 
+                            console.log(curr["groupMembers"]);
+                            final.push(curr)
+                        } 
+            
+                    }
+
+                    this.setState({
+                        groups: final,
+                    });
+                    
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+
+        })
+        .catch((error) => {
+            console.log(error);
+                    })
+}
 */}
