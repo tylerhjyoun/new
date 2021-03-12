@@ -92,13 +92,12 @@ export default class showGroup extends Component {
     render() {
         return (
             <div>
-               <h2> Logged Groups </h2>
-               <Link to='/home/group'> Add Group </Link>
-               <input class="form-control" id="myInput" type="text" placeholder="Search.."/>
+               <h2> Groups </h2>
+               <Link className = "btn" to='/home/group'> Add Group </Link>
             <table className="table">
             <thead className="thead-custom">
                 <tr>
-                    <th>Your Groups</th>
+                    <th>My Groups</th>
                     <th>Number of Members</th>
                 </tr>
             </thead>
