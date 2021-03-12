@@ -87,7 +87,9 @@ export default class showGroup extends Component {
             return aval - bval;
         });
         const filtered = this.state.events.filter(e =>
-            Math.floor((new Date(e.endtime).getTime() + new Date(e.endtime).getDate() - new Date().getTime() - new Date().getDate()) / 1000) >= 0);
+            Math.floor(
+                (((new Date(e.endtime).getTime() + new Date(e.endtime).getDate() - new Date().getTime() - new Date().getDate()) / 1000) >= 0) 
+                && (((new Date().getTime() + new Date().getDate() - new Date(e.starttime).getTime() - new Date(e.starttime).getDate()) / 1000) >= 0)));
         return filtered.map(currentevent => {
             return <Event event={currentevent} deleteEvent={this.deleteEvent} key={currentevent._id} />
         })
