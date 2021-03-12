@@ -8,11 +8,18 @@ import man_pic from "../profilepictures/man_pic.png"
 import beard_pic from "../profilepictures/beard_pic.png"
 
 
-const Event = props => (
+const CEvent = props => (
     <tr>
         <td>{props.event.eventname}</td>
         <td>{props.event.description}</td>
         <td><Timer endtime={props.event.endtime} /></td> 
+    </tr>
+);
+const FEvent = props => (
+    <tr>
+        <td>{props.event.eventname}</td>
+        <td>{props.event.description}</td>
+        <td><Timer endtime={props.event.starttime} /></td> 
     </tr>
 );
 
@@ -56,6 +63,18 @@ export default class ShowUsers extends Component {
     }
 
 
+    // eventList() {
+    //     this.state.events.sort(function (a, b) {
+    //         const aval = Math.floor((new Date(a.endtime).getTime() + new Date(a.endtime).getDate() - new Date().getTime() - new Date().getDate()) / (1000));
+    //         const bval = Math.floor((new Date(b.endtime).getTime() + new Date(b.endtime).getDate() - new Date().getTime() - new Date().getDate()) / (1000));
+    //         return aval - bval;
+    //     });
+    //     const filtered = this.state.events.filter(e =>
+    //         Math.floor((new Date(e.endtime).getTime() + new Date(e.endtime).getDate() - new Date().getTime() - new Date().getDate()) / 1000) >= 0);
+    //     return filtered.map(currentevent => {
+    //         return <Event event={currentevent} deleteEvent={this.deleteEvent} key={currentevent._id} />
+    //     })
+    // }
     eventList() {
         this.state.events.sort(function (a, b) {
             const aval = Math.floor((new Date(a.endtime).getTime() + new Date(a.endtime).getDate() - new Date().getTime() - new Date().getDate()) / (1000));
@@ -63,18 +82,36 @@ export default class ShowUsers extends Component {
             return aval - bval;
         });
         const filtered = this.state.events.filter(e =>
-            Math.floor((new Date(e.endtime).getTime() + new Date(e.endtime).getDate() - new Date().getTime() - new Date().getDate()) / 1000) >= 0);
-        return filtered.map(currentevent => {
-            return <Event event={currentevent} deleteEvent={this.deleteEvent} key={currentevent._id} />
+            Math.floor(
+                (((new Date(e.endtime).getTime() + new Date(e.endtime).getDate() - new Date().getTime() - new Date().getDate()) / 1000) >= 0) 
+                && (((new Date().getTime() + new Date().getDate() - new Date(e.starttime).getTime() - new Date(e.starttime).getDate()) / 1000) >= 0)));
+        
+            return filtered.map(currentevent => {
+            return <CEvent event={currentevent} deleteEvent={this.deleteEvent} key={currentevent._id} />
+        })
+    }
+    futureList() {
+        this.state.events.sort(function (a, b) {
+            const aval = Math.floor((new Date(a.endtime).getTime() + new Date(a.endtime).getDate() - new Date().getTime() - new Date().getDate()) / (1000));
+            const bval = Math.floor((new Date(b.endtime).getTime() + new Date(b.endtime).getDate() - new Date().getTime() - new Date().getDate()) / (1000));
+            return aval - bval;
+        });
+        const filtered = this.state.events.filter(e =>
+            Math.floor(
+                (((new Date(e.endtime).getTime() + new Date(e.endtime).getDate() - new Date().getTime() - new Date().getDate()) / 1000) >= 0) 
+                && (((new Date().getTime() + new Date().getDate() - new Date(e.starttime).getTime() - new Date(e.starttime).getDate()) / 1000) <= 0)));
+        
+            return filtered.map(currentevent => {
+            return <FEvent event={currentevent} deleteEvent={this.deleteEvent} key={currentevent._id} />
         })
     }
 
-    userList() {
+    // userList() {
 
-        return this.state.events.map(event => {
-            return <Event event={event} key={event._id} />
-        })
-    }
+    //     return this.state.events.map(event => {
+    //         return <Event event={event} key={event._id} />
+    //     })
+    // }
 
     addFollowing(id) {
         axios.post('http://localhost:5000/users/addfollowing/' + this.state.id, { id })
@@ -103,20 +140,32 @@ export default class ShowUsers extends Component {
 
                     </div>
                 </div>
-                {/*<h3> {this.state.user.name}'s Events: </h3>*/}
+                <h3>{this.state.user.username}'s Current Events</h3>
                 <table className="table">
                     <thead className="thead-custom">
                         <tr>
                             <th>Event Name</th>
                             <th>Description</th>
-                            <th> Started At </th>
-                            <th> Ending At</th>
                             <th> Time Left</th>
 
                         </tr>
                     </thead>
                     <tbody>
                         {this.eventList()}
+                    </tbody>
+                </table>
+                <h3>{this.state.user.username}'s Future Events</h3>
+                <table className="table">
+                    <thead className="thead-custom">
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Description</th>
+                            <th> Starts In </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.futureList()}
                     </tbody>
                 </table>
             </div >
@@ -160,7 +209,6 @@ export default class ShowUsers extends Component {
             </div >
         );
     }
-
         render() {
         return (
             <div>
@@ -168,7 +216,6 @@ export default class ShowUsers extends Component {
                 <h2>Name: {this.state.user.name}</h2>
                 <h2>Followers: {this.state.followers}</h2>
                 <h2>Following: {this.state.following}</h2>
-
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
