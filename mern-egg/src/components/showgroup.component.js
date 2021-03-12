@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Select from 'react-select'
+import Timer from './timer.component'
 import auth from './auth'
 import '../Groups.css';
 import moment from 'moment'
@@ -20,10 +21,10 @@ const Group = props => (
 
 const Event = props => (
     <tr>
+        <td>{props.event.user[0].username}</td>
         <td>{props.event.eventname}</td>
         <td>{props.event.description}</td>
-        <td>{moment(props.event.starttime).format("ddd, MMM DD HH:mm a")}</td>
-        <td>{moment(props.event.endtime).format("ddd, MMM DD HH:mm a")}</td>
+        <td><Timer endtime={props.event.endtime} /></td>
     </tr>
 );
 
@@ -80,12 +81,7 @@ export default class showGroup extends Component {
         }
 
     eventList() {
-        var eventsUnfiltered = this.state.events;
-        console.log(this.state.groupmembers.length);
-        for(var i = 0; i < this.state.groupmembers.length; i++)
-        {
-
-        }
+        console.log(this.state.events)
         this.state.events.sort(function (a, b) {
             const aval = Math.floor((new Date(a.endtime).getTime() + new Date(a.endtime).getDate() - new Date().getTime() - new Date().getDate()) / (1000));
             const bval = Math.floor((new Date(b.endtime).getTime() + new Date(b.endtime).getDate() - new Date().getTime() - new Date().getDate()) / (1000));
@@ -111,10 +107,10 @@ export default class showGroup extends Component {
                 <table className="table">
                 <thead className="thead-custom">
                         <tr>
+                            <th>User Name</th>
                             <th>Event Name</th>
                             <th>Description</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
+                            <th>Time Left</th>
                         </tr>
                     </thead>
                     <tbody>
