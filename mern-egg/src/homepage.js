@@ -16,6 +16,7 @@ import AddFollowing from "./components/addfollowing.component"
 import ShowFollowing from "./components/showfollowing.component"
 import ShowUser from "./components/showuser.component"
 import EditUser from "./components/edituser.component"
+import ShowGroup from "./components/showgroup.component"
 
 export const homepage = () => {
    return (
@@ -25,6 +26,7 @@ export const homepage = () => {
             <Route path="/home" exact component={Home} />
             <Route path="/home/users" exact component={ShowUsers} />
             <Route path="/home/groups" exact component={ShowGroups} />
+            <Route path="/home/groups/:id" component={ShowGroup} />
             <Route path="/home/group" exact component={CreateGroup} />
             <Route path="/home/events" exact component={MyEvents} />
             <Route path="/home/event" exact component={CreateEvent} />
