@@ -27,7 +27,7 @@ router.route('/:id').delete((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));   
 })
 
-router.route('/:id').post((req, res) => {
+router.route('/:id').get((req, res) => {
     Group.findById(req.params.id)
         .then(group => res.json(group))
         .catch(err => res.status(400).json('Error: ' + err));   

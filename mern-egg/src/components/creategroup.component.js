@@ -70,7 +70,7 @@ export default class CreateGroup extends Component {
         const group = {
             groupName: this.state.groupName,
             groupMembers: this.state.groupMembers.map(user => ({id: user.value, username: user.label})).concat(this.state.currentUser),
-            groupCount: this.state.groupMembers.length
+            groupCount: this.state.groupMembers.length+1
         }
         console.log(group.groupMembers)
         this.setState({
@@ -116,6 +116,7 @@ export default class CreateGroup extends Component {
                     <div className = "CreateGroupBtn">
                         <input type="submit" value="Create Group" className="btn"/>
                     </div>
+                    <input type="submit" value="Create Group"/>
                     
                 </form>
             </div>
