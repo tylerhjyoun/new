@@ -108,6 +108,7 @@ export default class MyEvents extends Component {
                     <th>Event Name</th>
                     <th>Description</th>
                     <th>Duration</th>
+
                 </tr>
             </thead>
                 <tbody>
@@ -115,12 +116,14 @@ export default class MyEvents extends Component {
                 </tbody>
             </table>
             <h3> Past Events: </h3>
+
             <table className="table">
-            <thead className="thead-light">
+            <thead className="thead-custom">
                 <tr>
                     <th>Event Name</th>
                     <th>Description</th>
                     <th>Duration</th>
+
                 </tr>
             </thead>
                 <tbody>
