@@ -120,6 +120,7 @@ export default class MyEvents extends Component {
                     <th>Event Name</th>
                     <th>Description</th>
                     <th>Duration</th>
+                    <th></th>
                 </tr>
             </thead>
                 <tbody>
