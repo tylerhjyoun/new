@@ -42,7 +42,6 @@ export default class ShowUsers extends Component {
         return (
             <div>
                <h2>Logged Users </h2> 
- 
             <table className="table">
             <thead className="thead-light">
                 <tr>

@@ -32,13 +32,22 @@ export default class AddFollowing extends Component {
     constructor(props) {
         super(props)
         this.addFollowing = this.addFollowing.bind(this)
+        this.onChangeInput = this.onChangeInput.bind(this)
+        this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             id: '',
             following: [],
             users: [],
-            profilepicture: 0
+            profilepicture: 0,
+            query: ''
         }
+    }
+
+    onChangeInput(e) {
+        this.setState({
+            query: e.target.value
+        })
     }
 
 
@@ -50,7 +59,6 @@ export default class AddFollowing extends Component {
                 axios.get(`http://localhost:5000/users/` + this.state.id)
                     .then(response => {
                         this.setState({ following: response.data.following })
-                        console.log(this.state.following)
                         let user = localStorage.getItem('data');
                         const usertoken = user
                         axios.get(`http://localhost:5000/users`, { headers: { "Authorization": `Bearer ${usertoken}` } }) // get all users
@@ -72,11 +80,6 @@ export default class AddFollowing extends Component {
             .catch((error) => {
                 console.log(error);
             })
-
-
-
-
-
     }
 
     filteredUserList() {
@@ -97,6 +100,18 @@ export default class AddFollowing extends Component {
         })
     }
 
+    onSubmit(e) {
+        e.preventDefault();
+
+
+        if ((this.state.users.map(user => user.username).filter(el => el === this.state.query).length !== 0)) {
+            auth.login(() => {
+                this.props.history.push('/home/users/' + this.state.users.filter(el => el.username === this.state.query)[0]._id)
+            })
+            console.log("ok")
+        }
+
+    }
     addFollowing(id) {
         axios.post('http://localhost:5000/users/addfollowing/' + this.state.id, { id })
             .then(response => { console.log(response.data) });
@@ -113,6 +128,10 @@ export default class AddFollowing extends Component {
         return (
             <div>
                 <h2>Search Users </h2>
+                <form onSubmit={this.onSubmit}> <input
+                    onChange={this.onChangeInput}
+                /></form>
+
                 <h6> Follow Another User! </h6>
                 <table className="table">
                     <thead className="thead-custom">
