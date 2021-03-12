@@ -5,6 +5,8 @@ import auth from './auth'
 import egg_pic from "../profilepictures/egg_pic.png"
 import man_pic from "../profilepictures/man_pic.png"
 import beard_pic from "../profilepictures/beard_pic.png"
+import woman_pic from "../profilepictures/woman_pic.png"
+import '../EditUser.css';
 
 
 export default class EditUser extends Component {
@@ -88,9 +90,7 @@ export default class EditUser extends Component {
         })
 
         axios.post(`http://localhost:5000/users/update/` + user.id, user)
-            .then((res) => console.log(res.data), auth.login(() => {
-                this.props.history.push("/home/")
-            }))
+            .then((res) => console.log(res.data), alert("Changes Saved!"))
             .catch((error) => {
                 console.log(error);
             })
@@ -103,46 +103,47 @@ export default class EditUser extends Component {
     render() {
         return (
             <div className="bg-light">
-                <Link to="/home/" className="edit"> Back to home </Link>
+                
 
                 <h2>Edit User</h2>
+                
                 <form onSubmit={this.onSubmit}>
-                    <b>Current Username: {this.state.user.username}</b>
+                    <h6>Current Username: {this.state.user.username}</h6>
+                    <Link to="/home/" className="edit"> Back to Home </Link><br/>
                     <div>
-                        <label>New Username: </label>
+                        <br/>
+                        <label>New Username: </label><br/>
                         <input type="text" required value={this.state.username} onChange={this.onChangeUsername} />
                     </div>
                     <div>
-                        <label>New Password: </label>
-                        <input type="text" required value={this.state.password} onChange={this.onChangePassword} />
+                        <label>New Password: </label><br/>
+                        <input type="password" required value={this.state.password} onChange={this.onChangePassword} />
                     </div>
                     <div>
-                        <b> {this.state.profilepicture} </b>
-                            <b> Change Profile Picture </b>
-                            <select required onChange={this.onChangeProfilePicture}
-                            >
+                        <br/>
+                        <h6> Change Your Profile Picture!</h6>
+                        <p> You have Selected Option: {this.state.profilepicture}</p>
+                        <select required onChange={this.onChangeProfilePicture}>
                                 <option value= "1"> 1 </option>
                                 <option value= "2"> 2 </option>
                                 <option value= "3"> 3 </option>
-
-                            </select>
-                            <div> <b>1</b>
-                                <img className="ListIcon" src={egg_pic}
-                                    alt="ListIcon" width="40" height="40">
-                                </img>
-                            </div>
-                            <div> <b>2</b>
-                                <img className="ListIcon" src={man_pic}
-                                    alt="ListIcon" width="40" height="40">
-                                </img>
-                            </div>
-                            <div> <b>3</b>
-                                <img className="ListIcon" src={beard_pic}
-                                    alt="ListIcon" width="40" height="40">
-                                </img>
-                            </div>
-                        </div>
-                    <input type="submit" value="Save Changes" />
+                        </select>
+                    </div>
+                    
+                    <input type="image" src={man_pic} alt="default" width="96" height="96"
+                        value={this.state.profilepicture}
+                        onChange={this.onChangeProfilePicture}
+                    />
+                    <input type="image" src={beard_pic} alt="man" width="96" height="96"
+                        value={this.state.profilepicture}
+                        onChange={this.onChangeProfilePicture}
+                    />
+                    <input type="image" src={woman_pic} alt="woman" width="96" height="96"
+                        value={this.state.profilepicture}
+                        onChange={this.onChangeProfilePicture}
+                    />
+                    <pre>    Option 1       Option 2       Option 3</pre>
+                    <input type="submit" value="Save Changes" className = "btn"/>
 
                 </form>
             </div>
