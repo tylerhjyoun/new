@@ -3,11 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Timer from './timer.component'
 import moment from 'moment'
-import '../UserProfile.css';
-import egg_pic from "../profilepictures/egg_pic.png"
-import man_pic from "../profilepictures/man_pic.png"
-import beard_pic from "../profilepictures/beard_pic.png"
-import woman_pic from "../profilepictures/woman_pic.png"
 
 const Event = props => (
     <tr>
@@ -15,6 +10,7 @@ const Event = props => (
         <td>{props.event.description}</td>
         <td>{moment(props.event.starttime).format("ddd, MMM DD HH:mm a")}</td>
         <td>{moment(props.event.endtime).format("ddd, MMM DD HH:mm a")}</td>
+        <td><Timer endtime={props.event.endtime} /></td> 
     </tr>
 );
 
@@ -25,7 +21,6 @@ export default class ShowUsers extends Component {
             user: [],
             followers: 0,
             following: 0,
-            profilepicture: 0,
             events: []
         }
     }
@@ -36,8 +31,7 @@ export default class ShowUsers extends Component {
                 this.setState({
                     user: response.data,
                     followers: response.data.followers.length,
-                    following: response.data.following.length,
-                    profilepicture: response.data.profilepicture
+                    following: response.data.following.length
                 });
             })
             .catch((error) => {
@@ -55,7 +49,7 @@ export default class ShowUsers extends Component {
             })
     }
 
-    userList() {
+    eventList() {
         return this.state.events.map(event => {
             return <Event event={event} key={event._id} />
         })
@@ -64,33 +58,23 @@ export default class ShowUsers extends Component {
     render() {
         return (
             <div>
-                <div class="user_profile">
-                    <img className = "avatar" src = {(this.state.profilepicture === 1 ? man_pic : this.state.profilepicture === 2 ? beard_pic : this.state.profilepicture === 3 ? woman_pic : null)}
-                                alt = "Icon" width="150" height="150"
-                    ></img>
-                    <div>
-                        <h3> {this.state.user.name}'s Profile: </h3>
-                        <p>
-                        Name: {this.state.user.name} <br />
-                        Username: {this.state.user.username} <br />
-                        <br /><br /><br />
-                        </p>
-                    </div>
-                </div>
-                <h3>Followers: {this.state.followers}</h3>
-                <h4>Following: {this.state.following}</h4>
+                <h2>Username: {this.state.user.username}</h2>
+                <h2>Name: {this.state.user.name}</h2>
+                <h2>Followers: {this.state.followers}</h2>
+                <h2>Following: {this.state.following}</h2>
 
                 <table className="table">
-                    <thead className="thead-custom">
+                    <thead className="thead-light">
                         <tr>
                             <th>Event Name</th>
                             <th>Description</th>
                             <th>Start Date</th>
                             <th>End Date</th>
+                            <th>Timer</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {this.userList()}
+                        {this.eventList()}
                     </tbody>
                 </table>
             </div>
