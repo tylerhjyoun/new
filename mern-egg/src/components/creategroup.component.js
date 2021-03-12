@@ -116,7 +116,7 @@ export default class CreateGroup extends Component {
                     <div className = "CreateGroupBtn">
                         <input type="submit" value="Create Group" className="btn"/>
                     </div>
-                    <input type="submit" value="Create Group"/>
+
                     
                 </form>
             </div>

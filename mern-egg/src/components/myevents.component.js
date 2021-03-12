@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
-import Timer from './timer.component'
 import moment from 'moment'
 
 import '../Events.css';
@@ -12,7 +11,6 @@ const Event = props => (
         <td>{props.event.eventname}</td>
         <td>{props.event.description}</td>
         <td><b>{moment(props.event.starttime).format("ddd, MMM DD HH:mm a")}</b> until <b>{moment(props.event.endtime).format("ddd, MMM DD HH:mm a")}</b></td>
-        <td><Timer endtime={props.event.endtime} /></td> 
         <td>
             <button class = "RemoveButton" 
             href="#" onClick={() => { props.deleteEvent(props.event._id) }}>Remove</button>
@@ -40,7 +38,6 @@ export default class MyEvents extends Component {
             .catch((error) => {
                 console.log(error);
               })
-
     }
     */
     deleteEvent(id){
@@ -112,22 +109,21 @@ export default class MyEvents extends Component {
                     <th>Description</th>
                     <th>Duration</th>
 
-                    <th>Timer</th>
-
                 </tr>
             </thead>
                 <tbody>
                 { this.eventList() }
                 </tbody>
             </table>
-            <h2>Past Events </h2> 
+            <h3> Past Events: </h3>
+
             <table className="table">
-            <thead className="thead-light">
+            <thead className="thead-custom">
                 <tr>
                     <th>Event Name</th>
                     <th>Description</th>
                     <th>Duration</th>
-                    <th>Timer</th>
+
                 </tr>
             </thead>
                 <tbody>
