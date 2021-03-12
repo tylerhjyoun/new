@@ -14,6 +14,7 @@ const Event = props => (
         <td>{props.event.description}</td>
         <td>{moment(props.event.starttime).format("ddd, MMM DD HH:mm a")}</td>
         <td>{moment(props.event.endtime).format("ddd, MMM DD HH:mm a")}</td>
+        <td><Timer endtime={props.event.endtime} /></td> 
     </tr>
 );
 
@@ -71,6 +72,7 @@ export default class ShowUsers extends Component {
     }
 
     userList() {
+
         return this.state.events.map(event => {
             return <Event event={event} key={event._id} />
         })
@@ -174,10 +176,11 @@ export default class ShowUsers extends Component {
                             <th>Description</th>
                             <th>Start Date</th>
                             <th>End Date</th>
+                            <th>Timer</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {this.userList()}
+                        {this.eventList()}
                     </tbody>
                 </table>
             </div>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Select from 'react-select'
 import auth from './auth'
+import '../AddGroup.css';
 
 export default class CreateGroup extends Component {
     constructor(props) {
@@ -99,10 +100,10 @@ export default class CreateGroup extends Component {
 
         return (
             <div className="bg-light">
-                <div class="title">Add Group</div>
+                <h2>Add Group</h2>
                 <form onSubmit={this.onSubmit}>
                     <div>
-                        <label>Group name: </label>
+                        <label>Group Name: </label>
                     </div>
                     <input type="text" required value={this.state.name} onChange={this.onChangeGroupname} />
                     <div>
@@ -111,8 +112,12 @@ export default class CreateGroup extends Component {
                         <Select isMulti ref="userInput" setValue={this.state.group} options={userList} onChange={this.onChangeUsers}
                         />
 
+                    </div><br/>
+                    <div className = "CreateGroupBtn">
+                        <input type="submit" value="Create Group" className="btn"/>
                     </div>
                     <input type="submit" value="Create Group"/>
+                    
                 </form>
             </div>
         )
