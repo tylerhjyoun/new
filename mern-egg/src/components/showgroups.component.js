@@ -72,10 +72,7 @@ export default class ShowGroups extends Component {
         return (
             <div>
                <h2> Groups </h2>
-               <form action="/home/group">
-                    <input className = "AddEvent" type="submit" value="Add Group" />
-                </form>
-               <Link to='/home/group'> Add Group </Link>
+               <Link className = "btn" to='/home/group'> Add Group </Link>
             <table>
             <thead>
                 <tr>
