@@ -7,6 +7,7 @@ import '../UserProfile.css';
 import egg_pic from "../profilepictures/egg_pic.png"
 import man_pic from "../profilepictures/man_pic.png"
 import beard_pic from "../profilepictures/beard_pic.png"
+import woman_pic from "../profilepictures/woman_pic.png"
 
 const Event = props => (
     <tr>
@@ -64,7 +65,7 @@ export default class ShowUsers extends Component {
         return (
             <div>
                 <div class="user_profile">
-                    <img className = "avatar" src = {(this.state.profilepicture === 1 ? egg_pic : this.state.profilepicture === 2 ? man_pic : this.state.profilepicture === 3 ? beard_pic : null)}
+                    <img className = "avatar" src = {(this.state.profilepicture === 1 ? man_pic : this.state.profilepicture === 2 ? beard_pic : this.state.profilepicture === 3 ? woman_pic : null)}
                                 alt = "Icon" width="150" height="150"
                     ></img>
                     <div>
