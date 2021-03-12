@@ -27,7 +27,12 @@ const User = props => (
 
 const Fuser = props => (
     <tr>
-        <td>{props.user.name}</td>
+        <td>
+        <img className="ListIcon" src={(props.user.profilepicture === 1 ? man_pic : props.user.profilepicture === 2 ? beard_pic : props.user.profilepicture === 3 ? woman_pic : null)}
+                alt="Icon" width="40" height="40"
+            >
+            </img>
+        {props.user.name}</td>
         <td><Link to={'/home/users/'+props.user._id}>{props.user.username}</Link></td>
         <td>
         </td>
