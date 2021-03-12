@@ -113,7 +113,7 @@ export default class AddFollowing extends Component {
         return (
             <div>
                 <h2>Search Users </h2>
-                <h6> Follow another User! </h6>
+                <h6> Follow Another User! </h6>
                 <table className="table">
                     <thead className="thead-custom">
                         <tr>

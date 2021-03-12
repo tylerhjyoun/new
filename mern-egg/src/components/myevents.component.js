@@ -113,6 +113,7 @@ export default class MyEvents extends Component {
                     <th>Duration</th>
 
                     <th>Timer</th>
+                    <th></th>
 
                 </tr>
             </thead>
@@ -120,14 +121,15 @@ export default class MyEvents extends Component {
                 { this.eventList() }
                 </tbody>
             </table>
-            <h2>Past Events </h2> 
+            <h3> Past Events: </h3> 
             <table className="table">
-            <thead className="thead-light">
+            <thead className="thead-custom">
                 <tr>
                     <th>Event Name</th>
                     <th>Description</th>
                     <th>Duration</th>
                     <th>Timer</th>
+                    <th></th>
                 </tr>
             </thead>
                 <tbody>
