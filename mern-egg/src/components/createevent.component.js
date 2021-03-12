@@ -144,16 +144,19 @@ export default class CreateEvent extends Component {
                     {/* <label>group? </label>
                     <input type="text"  value={this.state.user} onChange={this.onChangeUser} /> */}
 
-                    <label>Event name: </label>
+                    <label>Event name: </label><br/>
                     <input type="text" required value={this.state.eventName} onChange={this.onChangeEventname} />
-
-                    <label>Description: </label>
+                    <br/>
+                    <label>Description: </label><br/>
                     <input type="text" required value={this.state.description} onChange={this.onChangeDescription} />
+                    <br/>
                     <div>
                         <label>Date: </label>
+                        <br/>
                         <DateTimeRangePicker required minDate={new Date()} value={this.state.date} onChange={this.onChangeDate} calendarClassName="react-datetime-picker__wrapper" />
                     </div>
-                    <input type="submit" value="Create Event" />
+                    <br/>
+                    <input className = "btn" type="submit" value="Create Event" />
                 </form>
             </div>
         )

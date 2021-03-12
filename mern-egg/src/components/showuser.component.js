@@ -91,10 +91,10 @@ export default class ShowUsers extends Component {
                 <div class="profile">
                     <img className = "avatar" src = {(this.state.profilepicture === 1 ? egg_pic : this.state.profilepicture === 2 ? man_pic : this.state.profilepicture === 3 ? beard_pic : null)}
                                 alt = "Icon" width="150" height="150"
-                            ></img>
+                    ></img>
                     <div>
                         <p>
-                            Name: {this.state.user.name} <br />
+                        Name: {this.state.user.name} <br />
                         Username: {this.state.user.username} <br />
                         Following: {this.state.following} <br />
                         Followers: {this.state.followers} <br />
@@ -109,7 +109,10 @@ export default class ShowUsers extends Component {
                         <tr>
                             <th>Event Name</th>
                             <th>Description</th>
-                            <th>Time Left</th>
+                            <th> Started At </th>
+                            <th> Ending At</th>
+                            <th> Time Left</th>
+
                         </tr>
                     </thead>
                     <tbody>
