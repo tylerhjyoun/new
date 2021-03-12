@@ -12,8 +12,6 @@ const Event = props => (
     <tr>
         <td>{props.event.eventname}</td>
         <td>{props.event.description}</td>
-        <td>{moment(props.event.starttime).format("ddd, MMM DD HH:mm a")}</td>
-        <td>{moment(props.event.endtime).format("ddd, MMM DD HH:mm a")}</td>
         <td><Timer endtime={props.event.endtime} /></td> 
     </tr>
 );
@@ -114,6 +112,7 @@ export default class ShowUsers extends Component {
                             <th> Started At </th>
                             <th> Ending At</th>
                             <th> Time Left</th>
+
                         </tr>
                     </thead>
                     <tbody>
