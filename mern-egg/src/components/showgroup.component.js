@@ -96,9 +96,10 @@ export default class showGroup extends Component {
 
     render() {
         const data = Array.from(this.state.groupmembers);
-        const listUsers = data.map((d) => <li key={d.username}><Link to={'/home/users/' + d.id}>{d.username}</Link></li>);
+        const listUsers = data.map((d) => <tr key={d.username}><td><Link to={'/home/users/' + d.id}>{d.username}</Link></td></tr>);
         return (
             <div>
+
                 <h2>{this.state.group.groupName}'s Group Profile</h2>
                 <div class="profile">
                 <img className = "avatar" src = "https://cdn1.iconfinder.com/data/icons/business-avatar-vol-2/16/men_avatar_group_people_persons_community-512.png"
@@ -113,6 +114,7 @@ export default class showGroup extends Component {
                 </p>
                 <h3>Group Members:</h3>
                 <ul className="UserList">{listUsers}</ul>
+
                 <table className="table">
                 <thead className="thead-custom">
                         <tr>
