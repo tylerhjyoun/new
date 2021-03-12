@@ -96,13 +96,20 @@ export default class showGroup extends Component {
 
     render() {
         const data = Array.from(this.state.groupmembers);
-        const listUsers = data.map((d) => <li key={d.username}><Link to={'/home/users/' + d.id}>{d.username}</Link></li>);
+        const listUsers = data.map((d) => <tr key={d.username}><td><Link to={'/home/users/' + d.id}>{d.username}</Link></td></tr>);
         return (
             <div>
                 <h2>Group Name: {this.state.group.groupName}</h2>
                 <h2>Group Size: {this.state.group.groupCount}</h2>
                 <h2>Group Members:</h2>
-                <ul className="UserList">{listUsers}</ul>
+                <table className="table">
+                <thead className="thead-custom">
+                    <tr>
+                        <th>User Name</th>
+                    </tr>
+                </thead>
+                <tbody>{listUsers}</tbody>
+                </table>
                 <table className="table">
                 <thead className="thead-custom">
                         <tr>
