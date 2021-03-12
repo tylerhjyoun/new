@@ -6,6 +6,11 @@ import Timer from './timer.component'
 import auth from './auth'
 import '../Groups.css';
 import moment from 'moment'
+import egg_pic from "../profilepictures/egg_pic.png"
+import man_pic from "../profilepictures/man_pic.png"
+import beard_pic from "../profilepictures/beard_pic.png"
+import woman_pic from "../profilepictures/woman_pic.png"
+
 
 const Group = props => (
     <tr>
@@ -34,7 +39,8 @@ export default class showGroup extends Component {
         this.state = {
             group: [],
             groupmembers: [],
-            events: []
+            events: [],
+            profilepicture: []
         }  
     
     }
@@ -49,6 +55,21 @@ export default class showGroup extends Component {
                         groupmembers: response.data.groupMembers
                     });
                     console.log(this.state.group)
+                    for(var i = 0; i < this.state.groupmembers.length; i++)
+                        {
+                            var final = []
+                            axios.get(`http://localhost:5000/users/` + this.state.groupmembers[i].id)
+                            .then(response => {
+                                final.push(response.data.profilepicture)
+                                this.setState({
+                                    profilepicture: final
+                                });
+                                console.log(this.state.profilepicture)
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            })
+                        }
                 })
                 .catch((error) => {
                     console.log(error);
@@ -60,10 +81,8 @@ export default class showGroup extends Component {
                         var final = []
                         for (var i = 0; i < res.data.length; i++) { 
                             var curr = eventsData[i]
-                            console.log(curr.user[0].id)
                             for (var q = 0; q < this.state.groupmembers.length; q++)
                             {
-                                console.log(this.state.groupmembers[q].id)
                                 if(curr.user[0].id === this.state.groupmembers[q].id){
                                     final.push(curr)
                                 }
@@ -95,8 +114,21 @@ export default class showGroup extends Component {
 
 
     render() {
+        for(var i = 0; i < this.state.groupmembers.length; i++)
+        {
+            this.state.groupmembers[i].profilepicture = this.state.profilepicture[i];
+        }
+        console.log(this.state.groupmembers)
         const data = Array.from(this.state.groupmembers);
-        const listUsers = data.map((d) => <tr key={d.username}><td><Link to={'/home/users/' + d.id}>{d.username}</Link></td></tr>);
+        const listUsers = data.map((d) => 
+        <tr key={d.username}>
+            
+            <td><img className="ListIcon" src={(d.profilepicture === 1 ? man_pic : d.profilepicture === 2 ? beard_pic : d.profilepicture === 3 ? woman_pic : null)}
+                alt="Icon" width="40" height="40"
+            >
+            </img><Link to={'/home/users/' + d.id}>{d.username}</Link></td>
+        </tr>);
+        
         return (
             <div>
 
@@ -116,7 +148,7 @@ export default class showGroup extends Component {
                 <table className="table">
                 <thead className="thead-custom">
                     <tr>
-                        <th>User Name</th>
+                        <th>     User Name</th>
                     </tr>
                 </thead>
                 <tbody>
