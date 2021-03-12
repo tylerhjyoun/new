@@ -113,7 +113,16 @@ export default class showGroup extends Component {
                 <h6>Group Size: {this.state.group.groupCount}</h6> <br/>
                 </p>
                 <h3>Group Members:</h3>
-                <ul className="UserList">{listUsers}</ul>
+                <table className="table">
+                <thead className="thead-custom">
+                    <tr>
+                        <th>User Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {listUsers}
+                </tbody>
+                </table>
 
                 <table className="table">
                 <thead className="thead-custom">
