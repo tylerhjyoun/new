@@ -32,13 +32,22 @@ export default class AddFollowing extends Component {
     constructor(props) {
         super(props)
         this.addFollowing = this.addFollowing.bind(this)
+        this.onChangeInput = this.onChangeInput.bind(this)
 
         this.state = {
             id: '',
             following: [],
             users: [],
-            profilepicture: 0
+            profilepicture: 0,
+            query: ''
         }
+    }
+
+    onChangeInput(e) {
+        this.setState({
+            query: e.target.value
+        })
+        console.log(this.state.users)
     }
 
 
@@ -113,6 +122,10 @@ export default class AddFollowing extends Component {
         return (
             <div>
                 <h2>Search Users </h2>
+                <form> <input
+                    onChange={this.onChangeInput}
+                /></form>
+
                 <h6> Follow Another User! </h6>
                 <table className="table">
                     <thead className="thead-custom">
