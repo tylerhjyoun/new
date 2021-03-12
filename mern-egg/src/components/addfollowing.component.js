@@ -7,11 +7,12 @@ import '../Users.css';
 import egg_pic from "../profilepictures/egg_pic.png"
 import man_pic from "../profilepictures/man_pic.png"
 import beard_pic from "../profilepictures/beard_pic.png"
+import woman_pic from "../profilepictures/woman_pic.png"
 
 const User = props => (
     <tr>
         <td>
-            <img className="ListIcon" src={(props.user.profilepicture === 1 ? egg_pic : props.user.profilepicture === 2 ? man_pic : props.user.profilepicture === 3 ? beard_pic : null)}
+            <img className="ListIcon" src={(props.user.profilepicture === 1 ? man_pic : props.user.profilepicture === 2 ? beard_pic : props.user.profilepicture === 3 ? woman_pic : null)}
                 alt="Icon" width="40" height="40"
             >
             </img>

@@ -99,16 +99,18 @@ export default class CreateEvent extends Component {
             <div className="bg-light">
                 <h2>Add Event</h2>
                 <form onSubmit={this.onSubmit}>
-                    <label>Event name: </label>
+                    <label>Event name: </label><br/>
                     <input type="text" required value={this.state.eventName} onChange={this.onChangeEventname} />
-
-                    <label>Description: </label>
+                    <br/>
+                    <label>Description: </label><br/>
                     <input type="text" required value={this.state.description} onChange={this.onChangeDescription} />
                     <div>
                         <label>Date: </label>
+                        <br/>
                         <DateTimeRangePicker required minDate={new Date()} value={this.state.date} onChange={this.onChangeDate} calendarClassName="react-datetime-picker__wrapper" />
                     </div>
-                    <input type="submit" value="Create Event" />
+                    <br/>
+                    <input type="submit" value="Create Event" className = "btn"/>
                 </form>
             </div>
         )

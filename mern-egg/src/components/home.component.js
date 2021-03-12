@@ -7,6 +7,7 @@ import auth from "./auth"
 import egg_pic from "../profilepictures/egg_pic.png"
 import man_pic from "../profilepictures/man_pic.png"
 import beard_pic from "../profilepictures/beard_pic.png"
+import woman_pic from "../profilepictures/woman_pic.png"
 
 
 const Event = props => (
@@ -80,7 +81,7 @@ export default class MyEvents extends Component {
             <div className="background">
                 <h2> Welcome back, {this.state.user.username}!</h2>
                 <div class="profile">
-                    <img className = "avatar" src = {(this.state.profilepicture === 1 ? egg_pic : this.state.profilepicture === 2 ? man_pic : this.state.profilepicture === 3 ? beard_pic : null)}
+                    <img className = "avatar" src = {(this.state.profilepicture === 1 ? man_pic : this.state.profilepicture === 2 ? beard_pic : this.state.profilepicture === 3 ? woman_pic : null)}
                                 alt = "Icon" width="150" height="150"
                     ></img>
                     <div>

@@ -4,13 +4,18 @@ import axios from 'axios'
 import Select from 'react-select'
 import auth from './auth'
 import '../Followers.css';
+import egg_pic from "../profilepictures/egg_pic.png"
+import man_pic from "../profilepictures/man_pic.png"
+import beard_pic from "../profilepictures/beard_pic.png"
+import woman_pic from "../profilepictures/woman_pic.png"
 
 const User = props => (
     <tr>
         <td>
-        <img className = "ListIcon" src = "https://image.flaticon.com/icons/png/512/147/147144.png"
-        alt = "ListIcon" width="40" height="40"
-        ></img>
+        <img className="ListIcon" src={(props.user.profilepicture === 1 ? man_pic : props.user.profilepicture === 2 ? beard_pic : props.user.profilepicture === 3 ? woman_pic : null)}
+                alt="Icon" width="40" height="40"
+            >
+            </img>
         {props.user.name}</td>
         <td><Link to={'/home/users/'+props.user._id}>{props.user.username}</Link></td>
         <td>
@@ -41,7 +46,8 @@ export default class ShowFollowing extends Component {
             followers: [],
             users: [],
             follower_count: 0,
-            following_count: 0
+            following_count: 0,
+            profilepicture: 0
         }
     }
 
