@@ -90,9 +90,7 @@ export default class EditUser extends Component {
         })
 
         axios.post(`http://localhost:5000/users/update/` + user.id, user)
-            .then((res) => console.log(res.data), auth.login(() => {
-                this.props.history.push("/home/")
-            }))
+            .then((res) => console.log(res.data), alert("Changes Saved!"))
             .catch((error) => {
                 console.log(error);
             })

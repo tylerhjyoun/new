@@ -41,6 +41,28 @@ class Navbar extends Component {
             })
     }
 
+    // componentDidUpdate(prevProps) {
+    //     const token = { token: localStorage.getItem('data') } // determine user that is logged in and set state to its id
+    //     axios.post(`http://localhost:5000/login/token`, token)
+    //         .then((res) => {
+    //             this.setState({ id: res.data.id.id })
+    //             console.log(this.state.id)
+    //             axios.get(`http://localhost:5000/users/` + this.state.id)
+    //                 .then(res => {
+    //                     this.setState({
+    //                         profilepicture: res.data.profilepicture
+    //                     })
+    //                     console.log(res.data)
+    //                 })
+    //                 .catch((error) => {
+    //                     console.log(error);
+    //                 })
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         })
+    // }
+
 
     render() {
         return (
