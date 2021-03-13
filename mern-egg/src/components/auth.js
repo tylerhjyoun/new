@@ -19,3 +19,5 @@ class Auth {
 }
 
 export default new Auth()
+
+// Credit for the auth class comes from https://www.youtube.com/watch?v=Y0-qdp-XBJg&ab_channel=freeCodeCamp.org

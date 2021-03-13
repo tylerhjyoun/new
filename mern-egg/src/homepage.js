@@ -34,7 +34,6 @@ export const homepage = () => {
             <Route path="/home/user/friends/showfollowing" exact component={ShowFollowing} />
             <Route path="/home/users/:id" component={ShowUser} />
             <Route path="/home/user/edit" component={EditUser} />
-
       </div>
    );
 }
