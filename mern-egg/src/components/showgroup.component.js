@@ -15,12 +15,8 @@ import woman_pic from "../profilepictures/woman_pic.png"
 const Group = props => (
     <tr>
         <td>{props.group.groupName}</td>
-        {/*<Link to={`/users/${props.group.groupMembers[0]}`}>       
-            <td>{props.group.groupMembers}</td>
-        </Link>*/}
-        {/* <td>...members...</td> */}
+       
         <td>{props.group._id}</td>
-        {/* Remove the delete button later on */}
     </tr>
 );
 

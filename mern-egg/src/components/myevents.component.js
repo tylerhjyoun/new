@@ -27,19 +27,6 @@ export default class MyEvents extends Component {
         }    
     }
    
-    /*
-    componentDidMount(){
-        const a = new Date()
-        console.log(a)
-        axios.get(`http://localhost:5000/events`)
-            .then(res => {
-                this.setState({events: res.data});
-            })
-            .catch((error) => {
-                console.log(error);
-              })
-    }
-    */
     deleteEvent(id){
         axios.delete('http://localhost:5000/events/'+id)
             .then(response => { console.log(response.data)});

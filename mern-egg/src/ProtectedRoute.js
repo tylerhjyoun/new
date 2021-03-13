@@ -18,3 +18,5 @@ const ProtectedRoute = ({component:Component, ...rest}) => {
 }
 
  export {ProtectedRoute}
+
+ // Credit for protected route comes from https://www.youtube.com/watch?v=Y0-qdp-XBJg&ab_channel=freeCodeCamp.org
