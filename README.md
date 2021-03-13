@@ -3,6 +3,7 @@ With the Egg-Timer, users can keep track of other users' events, checking to see
 - Create new events, groups, users
 - Follow and unfollow users
 - View users and groups profile pages
+- View ongoing events, past events, and upcoming events for users
 
 # Getting Started
 You'll need to install all of the modules
