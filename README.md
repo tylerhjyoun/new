@@ -1,3 +1,9 @@
+# Project Features
+With the Egg-Timer, users can keep track of other users' events, checking to see if they are in a meeting or not, so they know not to disturb them.
+- Create new events, groups, users
+- Follow and unfollow users
+- View users and groups profile pages
+
 # Getting Started
 You'll need to install all of the modules
 
@@ -16,7 +22,7 @@ Begin in the git repo
 npm start
 
 # Notes about contributions
-Justin Nguyen: He has commits under his account akira13, but also has some commits under jstnn818
-Agrim Gupta: Has commits that were pushed by other members, so his contribution might not be fully represented in the commit-graph
+- Justin Nguyen: He has commits under his account akira13, but also has some commits under jstnn818
+- Agrim Gupta: Has commits that were pushed by other members, so his contribution might not be fully represented in the commit-graph
 
 Both have commits that were posted in the past 24 hours, so they may not show as contributors on the Github repo
