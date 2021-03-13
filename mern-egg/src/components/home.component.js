@@ -28,7 +28,9 @@ export default class MyEvents extends Component {
             user: [],
             followers: 0,
             following: 0,
-            profilepicture: 0
+            profilepicture: 0,
+            groups: [],
+            numGroups: 0
         }
     }
     componentDidMount() {
@@ -53,6 +55,56 @@ export default class MyEvents extends Component {
                         this.setState({
                             events: response.data,
                         })
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+
+                 axios.get(`http://localhost:5000/groups`)
+                    .then(res => {
+                        console.log(res.data)
+                        let groupsData = res.data
+                        this.setState({
+                            groups: res.data,
+                        });
+             
+                        let final = []; // empty array
+                        const token = { token: localStorage.getItem('data') }
+             
+                        console.log(token);
+                        var userId = '';
+             
+                        axios.post(`http://localhost:5000/login/token`, token)
+                            .then((response) => {
+                                console.log(response.data.id.id);
+                                this.setState({
+                                    id: response.data.id.id,
+                                });
+             
+                                for (var i = 0; i < groupsData.length; i++) { 
+                                    var curr = groupsData[i]
+                                    
+                                    const arrOfGroupMembers = curr["groupMembers"];
+                                    for (var j = 0; j < arrOfGroupMembers.length; j++) {
+                                        var temp = arrOfGroupMembers[j]
+                                        // console.log(temp)
+                                        if (temp["id"] == response.data.id.id) { 
+                                            final.push(curr)
+                                            console.log(curr)
+                                        } 
+                                    }
+                                }
+             
+                                console.log(final)
+                                this.setState({
+                                    groups: final,
+                                    numGroups: final.length
+                                })
+             
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            })
                     })
                     .catch((error) => {
                         console.log(error);
@@ -99,6 +151,8 @@ export default class MyEvents extends Component {
                 </div>
                 <h3>Followers: {this.state.followers}</h3>
                 <h4>Following: {this.state.following}</h4><br/>
+                <br></br>
+                <h5>You're a part of {this.state.numGroups} group(s).</h5>
                 <table className="table">
                     <thead className="thead-custom">
                         <tr>
