@@ -27,3 +27,9 @@ npm start
 - Agrim Gupta: Has commits that were pushed by other members, so his contribution might not be fully represented in the commit-graph
 
 Both have commits that were posted in the past 24 hours, so they may not show as contributors on the Github repo
+
+# Notes about .env
+- this code uses the MongoDB to store JSON objects
+- once configuring your own database, provide a .env file in the backend directory with the following:
+   - ACCESS_TOKEN_SECRET: any hashed token
+   - ATLAS_URI: uri from your own database 
