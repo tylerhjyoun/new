@@ -4,6 +4,7 @@ With the Egg-Timer, users can keep track of other users' events, checking to see
 - Follow and unfollow users
 - View users and groups profile pages
 - View ongoing events, past events, and upcoming events for users
+- Video Demo: https://www.youtube.com/watch?v=67kbIg5OeFM&ab_channel=AgrimGupta
 
 # Getting Started
 You'll need to install all of the modules
@@ -33,3 +34,5 @@ Both have commits that were posted in the past 24 hours, so they may not show as
 - once configuring your own database, provide a .env file in the backend directory with the following:
    - ACCESS_TOKEN_SECRET: any hashed token
    - ATLAS_URI: uri from your own database 
+
+
